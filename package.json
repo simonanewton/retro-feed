@@ -1,0 +1,26 @@
+{
+  "name": "project-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "mysql -h localhost -u root -p < ./db/schema.sql",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonanewton/project-2.git"
+  },
+  "author": "Simon Newton, Connie Tran, Logan Hemphill, Terry C",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simonanewton/project-2/issues"
+  },
+  "homepage": "https://github.com/simonanewton/project-2#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4",
+    "mysql": "^2.18.1"
+  }
+}
