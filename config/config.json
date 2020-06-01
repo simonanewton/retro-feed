@@ -1,17 +1,17 @@
 {
     "development": {
-        "username": "root",
-        "password": "password",
-        "database": "project_db",
-        "host": "127.0.0.1",
+        "username": "ac9arrjxvtj1g2pb",
+        "password": "shqqswsi41dx9aer",
+        "database": "b96h0ybx2lucbuvk",
+        "host": "iwqrvsv8e5fz4uni.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
         "port": 3306,
         "dialect": "mysql"
     },
     "production": {
-        "username": "root",
-        "password": "password",
-        "database": "project_db",
-        "host": "127.0.0.1",
+        "username": "ac9arrjxvtj1g2pb",
+        "password": "shqqswsi41dx9aer",
+        "database": "b96h0ybx2lucbuvk",
+        "host": "iwqrvsv8e5fz4uni.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
         "dialect": "mysql"
     }
 }
