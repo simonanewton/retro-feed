@@ -34,7 +34,8 @@ npm start
 
 * https://www.npmjs.com/package/express
 * https://www.npmjs.com/package/express-handlebars
-* https://www.npmjs.com/package/mysql
+* https://www.npmjs.com/package/mysql2
+* https://www.npmjs.com/package/sequelize
 
 ## License
 
