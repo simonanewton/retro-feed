@@ -3,11 +3,11 @@
     background: transparent;
 }
 
-#search-button:focus {
+#search-button:active, #search-button:focus {
     box-shadow: none;
 }
 
-#search-button:focus > #search-icon {
+#search-button:active > #search-icon {
     color: black;
 }
 
