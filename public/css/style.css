@@ -1,0 +1,16 @@
+#search-bar {
+    outline: none;
+    background: transparent;
+}
+
+#search-button:focus {
+    box-shadow: none;
+}
+
+#search-button:focus > #search-icon {
+    color: black;
+}
+
+#search-bar:focus, #post-title:focus, #post-body:focus {
+    outline: none;
+}
