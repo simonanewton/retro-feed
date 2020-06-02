@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "mysql -h localhost -u root -p < ./db/schema.sql",
+    "watch": "nodemon server.js",
     "start": "node server.js"
   },
   "repository": {
@@ -24,5 +24,8 @@
     "express-handlebars": "^4.0.4",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }

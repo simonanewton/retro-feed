@@ -1,0 +1,19 @@
+body {
+    background-color: #000337;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.card {
+    background-color: #333366;
+    color: white;
+    border-style: none;
+}
+
+.signup .form-group {
+    margin: 20px 0;
+}
+
+.signup h2 {
+    font-size: 2rem;
+    color: #33ffff;
+}
