@@ -1,14 +1,14 @@
 $(document).ready(() => {
     // Getting references to our form and input
-    var signUpForm = $("form.signup");
-    var usernameInput = $("input#username-input");
-    var emailInput = $("input#email-input");
-    var passwordInput = $("input#password-input");
+    const signUpForm = $("form.signup");
+    const usernameInput = $("input#username-input");
+    const emailInput = $("input#email-input");
+    const passwordInput = $("input#password-input");
   
     // When the signup button is clicked, we validate the fields are not blank
     signUpForm.on("submit", (event) => {
       event.preventDefault();
-      var userData = {
+      let userData = {
         email: emailInput.val().trim(),
         username: usernameInput.val().trim(),
         password: passwordInput.val().trim()
@@ -31,9 +31,7 @@ $(document).ready(() => {
         username: username,
         password: password
       })
-        .then((data) => {
-          window.location.replace("/feed");
-        })
+        .then((data) => { window.location.replace("/feed") })
         .catch(handleLoginErr);
     }
   
