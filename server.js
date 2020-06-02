@@ -1,8 +1,11 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
 
 const db = require("./models");
 
