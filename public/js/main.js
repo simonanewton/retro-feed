@@ -1,33 +1,38 @@
 $(document).ready(() => {
     $("#search-button").click((event) => {
+        // prevent page refresh
         event.preventDefault();
 
+        // if search bar is empty, exit function
         if ($("#search-bar").val() === '') return;
 
+        // create object with search input
         const input = {
             search: $("#search-bar").val()
         }
 
+        // console.log the input
         console.log(input);
     });
 
-    $("#submit-post").click((event) => {
+    $("#submit-post").click(async (event) => {
+        // prevent page refresh
         event.preventDefault();
 
+        // if the post title or the post body is empty, exit function
         if ($("#post-title").val() === '' || $("#post-body").val() === '') return;
 
-        const title = $("#post-title").val();
-        const body = $("#post-body").val();
+        // create object with post information
+        const newPost = {
+            title: $("#post-title").val().trim(),
+            timestamp: moment().format("MM/DD/YYYY hh:mm a"),
+            body: $("#post-body").val().trim()
+        }
 
-        const post = `
-        <div class="card p-4 my-3 border border-secondary">
-            <h4 class="m-0">${title}</h4>
-            <hr class="my-3 border-secondary">
+        // send ajax post request with post object
+        await $.post("/api/posts", newPost);
 
-            <p class="m-0">${body}</p>
-        </div>
-        `;
-
-        $("#output-area").prepend(post);
+        // reload the window
+        location.reload();
     });
 });
