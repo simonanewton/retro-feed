@@ -25,7 +25,6 @@ $(document).ready(() => {
         // create object with post information
         const newPost = {
             title: $("#post-title").val().trim(),
-            timestamp: moment().format("MM/DD/YYYY hh:mm a"),
             body: $("#post-body").val().trim()
         }
 

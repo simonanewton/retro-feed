@@ -1,4 +1,4 @@
-var db = require("../models");
+const db = require("../models");
 
 module.exports = (app) => {
     app.get("/api/posts", async (req, res) => {
