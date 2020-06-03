@@ -1,3 +1,16 @@
+.link {
+    color: black;
+}
+
+.link:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+.link:visited {
+    color: black;
+}
+
 #search-bar {
     outline: none;
     background: transparent;
