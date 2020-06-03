@@ -1,3 +1,15 @@
+/* Global Styles */
+
+body {
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.card {
+    background-color: #333366;
+    color: white;
+    border-style: none;
+}
+
 .link {
     color: black;
 }
