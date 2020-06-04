@@ -22,7 +22,6 @@ $(document).ready(() => {
 
 		// If we have the fields populated, run the signUpUser function and empty fields
 		signUpUser(userData);
-
 		// Simon - I don't think this is necessary but I'm not sure yet
 		// emailInput.val("");
 		// usernameInput.val("");
@@ -31,9 +30,9 @@ $(document).ready(() => {
 
 	// Does a POST to the signup route. If successful, we are redirected to the user's feed
 	// Otherwise we log any errors
-	const signUpUser = async (userData) => {
+	const signUpUser = (userData) => {
 		// creates an ajax post using the userData parameter
-		const response = await $.post("/api/signup", userData);
+		const response = $.post("/api/signup", userData);
 
 		// if the post is made successfully, redirect the user to their feed
 		if (response === 'OK') {
