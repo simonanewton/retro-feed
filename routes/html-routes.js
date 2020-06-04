@@ -31,6 +31,7 @@ module.exports = (app) => {
     });
 
     app.get("/login", async (req, res) => {
-        res.sendFile(path.join(__dirname, "../public/login.html"));
+        // render login.handlebars
+        res.render("login");
     });
 }
