@@ -1,4 +1,5 @@
 const db = require("../models");
+const path = require("path");
 const moment = require("moment");
 
 module.exports = (app) => {
@@ -19,5 +20,9 @@ module.exports = (app) => {
 
         // render the posts.handlebars page with the posts
         res.render("posts", { posts: posts });
+    });
+
+    app.get("/signup", async (req, res) => {
+        res.sendFile(path.join(__dirname + "/../public/signup.html"));
     });
 }

@@ -33,19 +33,17 @@ $(document).ready(() => {
 	// Otherwise we log any errors
 	const signUpUser = async (userData) => {
 		// creates an ajax post using the userData parameter
-		const result = await $.post("/api/signup", userData);
+		const response = await $.post("/api/signup", userData);
 
 		// if the post is made successfully, redirect the user to their feed
-		result.done(() => {
-			console.log("Post made successfully.");
-			window.location.replace("/feed");
-		});
+		if (response === 'OK') {
+			window.location.replace("/posts");
+		}
 
 		// if the post fails, alert the user of the error
-		result.fail(() => {
-			console.log("Post creation failed.");
+		else {
 			$("#alert .msg").text(err.responseJSON);
 			$("#alert").fadeIn(500);
-		});
+		}
 	}
 });

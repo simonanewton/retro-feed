@@ -23,5 +23,6 @@ module.exports = (app) => {
     app.post("/api/signup", async (req, res) => {
         const userData = req.body;
         console.log(userData);
+        res.sendStatus(200);
     });
 }
