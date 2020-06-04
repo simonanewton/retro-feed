@@ -19,14 +19,14 @@ $(document).ready(() => {
         // prevent page refresh
         event.preventDefault();
 
-        // if the post title or the post body is empty, exit function
-        if ($("#post-title").val() === '' || $("#post-body").val() === '') return;
-
         // create object with post information
         const newPost = {
             title: $("#post-title").val().trim(),
             body: $("#post-body").val().trim()
         }
+
+        // if the post title or the post body is empty, exit function
+        if (!newPost.title || !newPost.body) return;
 
         // send ajax post request with post object
         await $.post("/api/posts", newPost);
