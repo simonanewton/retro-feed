@@ -4,28 +4,36 @@ body {
     font-family: 'IBM Plex Mono', monospace;
 }
 
+header, .sidebar {
+    background-color: #333366;
+}
+
 .card {
     background-color: #333366;
     color: white;
     border-style: none;
 }
 
-.link {
-    color: black;
+.link, .link:visited {
+    color: white;
 }
 
 .link:hover {
-    color: black;
+    color: white;
     text-decoration: underline;
 }
 
-.link:visited {
-    color: black;
+#search-bar {
+    background-color: #333366;
 }
 
-#search-bar {
+#search-input {
     outline: none;
     background: transparent;
+}
+
+#search-input::placeholder {
+    color: white;
 }
 
 #search-button:active, #search-button:focus {
@@ -33,9 +41,14 @@ body {
 }
 
 #search-button:active > #search-icon {
-    color: black;
+    color: lightgray;
 }
 
-#search-bar:focus, #post-title:focus, #post-body:focus {
+#search-input:focus, #post-title:focus, #post-body:focus {
     outline: none;
+}
+
+.icon:focus {
+    outline: none;
+    box-shadow: none;
 }
