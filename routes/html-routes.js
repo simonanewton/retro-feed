@@ -26,7 +26,8 @@ module.exports = (app) => {
     });
 
     app.get("/signup", async (req, res) => {
-        res.sendFile(path.join(__dirname, "../public/signup.html"));
+        // render signup.handlebars
+        res.render("signup");
     });
 
     app.get("/login", async (req, res) => {
