@@ -20,12 +20,6 @@ module.exports = (app) => {
         res.json(post);
     });
 
-<<<<<<< HEAD
-    app.post("/api/signup", async (req, res) => {
-        const userData = req.body;
-        console.log(userData);
-        res.sendStatus(200);
-=======
     app.get("/api/signup", async (req, res) => {
         const users = await db.newUser.findAll({});
         res.json(users);
@@ -40,6 +34,5 @@ module.exports = (app) => {
         console.log(newSignUp.dataValues)
         res.json(newSignUp.dataValues);
 
->>>>>>> sign up working except for the password
     });
 }
