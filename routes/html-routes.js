@@ -1,6 +1,7 @@
 const db = require("../models");
 const path = require("path");
 const moment = require("moment");
+const path = require("path");
 
 module.exports = (app) => {
     app.get("/", async (req, res) => {
@@ -26,6 +27,10 @@ module.exports = (app) => {
     });
 
     app.get("/signup", async (req, res) => {
-        res.sendFile(path.join(__dirname + "/../public/signup.html"));
+        res.sendFile(path.join(__dirname, "../public/signup.html"));
+    });
+
+    app.get("/login", async (req, res) => {
+        res.sendFile(path.join(__dirname, "../public/login.html"));
     });
 }
