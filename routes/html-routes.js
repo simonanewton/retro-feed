@@ -18,6 +18,9 @@ module.exports = (app) => {
         // modify the createdAt variable with moment to show how long ago the post was created
         posts.map(post => post.createdAt = moment(post.createdAt, 'YYYY-MM-DDTHH:mm:ss.000Z').fromNow());
 
+        // reverse the array to show the most recent posts first
+        posts.reverse();
+
         // render the posts.handlebars page with the posts
         res.render("posts", { posts: posts });
     });
