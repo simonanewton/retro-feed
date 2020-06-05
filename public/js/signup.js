@@ -6,7 +6,7 @@ $(document).ready(() => {
 	const passwordInput = $("input#password-input");
 
 
-	signUpForm.on("submit", (event) => {
+	signUpForm.submit((event) => {
 		// prevent page refresh
 		event.preventDefault();
 		
@@ -17,11 +17,12 @@ $(document).ready(() => {
 			password: passwordInput.val().trim()
 		};
 
-		// When the signup button is clicked, we validate the fields are not blank
+		// if either of the fields have been left blank, exit function
 		if (!userData.email || !userData.username || !userData.password) return;
 
-		// If we have the fields populated, run the signUpUser function and empty fields
+		// otherwise, run the signUpUser function
 		signUpUser(userData);
+
 		// Simon - I don't think this is necessary but I'm not sure yet
 		// emailInput.val("");
 		// usernameInput.val("");
@@ -30,19 +31,8 @@ $(document).ready(() => {
 
 	// Does a POST to the signup route. If successful, we are redirected to the user's feed
 	// Otherwise we log any errors
-	const signUpUser = (userData) => {
-		// creates an ajax post using the userData parameter
-		const response = $.post("/api/signup", userData);
-
-		// if the post is made successfully, redirect the user to their feed
-		if (response === 'OK') {
-			window.location.replace("/posts");
-		}
-
-		// if the post fails, alert the user of the error
-		else {
-			$("#alert .msg").text(err.responseJSON);
-			$("#alert").fadeIn(500);
-		}
+	const signUpUser = async (userData) => {
+		await $.post("/api/signup", userData);
+		window.location.replace("/posts");
 	}
 });

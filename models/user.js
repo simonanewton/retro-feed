@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 
 module.exports = (sequelize, DataTypes) => {
     // Create newUser database with User rows
-    var User = sequelize.define("newUser", {
+    let User = sequelize.define("newUser", {
         email: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
         username: {
-            type: DataTypes.TEXT,
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true,
         },
