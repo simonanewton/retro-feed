@@ -1,14 +1,6 @@
 const db = require("../models");
 
 module.exports = (app) => {
-    app.get("/api/signup", async (req, res) => {
-        // create an array of all users in the database
-        const users = await db.newUser.findAll({});
-
-        // send the array of users to the response
-        res.json(users);
-    });
-
     app.post("/api/signup", async (req, res) => {
         // create an array of all users in the database
         const user = await db.newUser.create({
@@ -22,7 +14,16 @@ module.exports = (app) => {
     });
 
     app.post("/api/login", async (req, res) => {
+        // temporary
         res.json(req.body);
+    });
+
+    app.get("/api/users", async (req, res) => {
+        // create an array of all users in the database
+        const users = await db.newUser.findAll({});
+
+        // send the array of users to the response
+        res.json(users);
     });
 
     app.get("/api/posts", async (req, res) => {

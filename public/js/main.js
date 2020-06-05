@@ -3,13 +3,13 @@ $(document).ready(() => {
         // prevent page refresh
         event.preventDefault();
 
-        // if search bar is empty, exit function
-        if ($("#search-bar").val() === '') return;
-
         // create object with search input
         const input = {
             search: $("#search-bar").val()
-        }
+        };
+
+        // if search bar is empty, exit function
+        if (input.search === '') return;
 
         // console.log the input
         console.log(input);
@@ -23,7 +23,7 @@ $(document).ready(() => {
         const newPost = {
             title: $("#post-title").val().trim(),
             body: $("#post-body").val().trim()
-        }
+        };
 
         // if the post title or the post body is empty, exit function
         if (!newPost.title || !newPost.body) return;
