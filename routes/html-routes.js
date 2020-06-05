@@ -4,8 +4,13 @@ const path = require("path");
 
 module.exports = (app) => {
     app.get("/", async (req, res) => {
+        // If the user already has an account send them to the members page
+        if (req.user) {
+            res.redirect("/posts");
+        }
+        res.render("signup");
         // render the index.handlebars page
-        res.render("index");
+        // res.render("index");
     });
 
     app.get("/posts", async (req, res) => {
