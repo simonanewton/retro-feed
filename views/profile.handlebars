@@ -37,7 +37,7 @@
                 </form>
             </div>
 
-            <div class="card p-4 my-3">
+            {{!-- <div class="card p-4 my-3">
                 <header>
                     <div class="d-flex align-items-center">
                         <h4 class="m-0 d-inline">Create New Post</h4>
@@ -55,11 +55,15 @@
 
                     <button type="submit" class="btn btn-primary float-right" id="submit-post">Submit</button>
                 </form>
-            </div>
+            </div> --}}
 
-            <div>
+           <div>
                 {{#each posts}}
                     {{> posts/new-post}}
+                {{else}}
+                    <div class="card my-3 text-center text-white">
+                        <p class="p-4 m-0">No posts...</p>
+                    </div>
                 {{/each}}
             </div>
         </div>
