@@ -8,10 +8,10 @@
                 <a href="" class="link">Home</a>
             </div>
 
-            <div class="p-3 mb-3 text-white rounded d-flex align-items-center sidebar">
+            <div class="p-3 mb-3 text-success rounded d-flex align-items-center sidebar">
                 <i class="fas fa-user"></i>
                 <span class="m-0 px-3">|</span>
-                <a href="/profile" class="link">Profile</a>
+                <a href="" class="link text-success">Profile</a>
             </div>
 
             <div class="p-3 mb-3 text-white rounded d-flex align-items-center sidebar">
@@ -37,35 +37,7 @@
                 </form>
             </div>
 
-            <div class="modal fade" id="new-post-modal" tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <header class="modal-header text-white">
-                            <h4 class="modal-title d-inline">New Post</h4>
-                            <i class="far fa-edit fa-lg px-3 d-inline align-self-center"></i>
-                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                                <span>&times;</span>
-                            </button>
-                        </header>
-
-                        <div class="modal-body text-white">
-                            <form>
-                                <label for="post-title">Title</label>
-                                <input type="text" name="post-title" class="p-2 mb-2 w-100 border-0 rounded" id="post-title">
-
-                                <label for="post-body">Body</label>
-                                <textarea name="post-body" cols="30" rows="3" class="p-2 mb-3 w-100 border-0 rounded" id="post-body"></textarea>
-                            </form>
-                        </div>
-
-                        <footer class="modal-footer">
-                            <button type="submit" class="btn btn-primary float-right" id="submit-post">Submit</button>
-                        </footer>
-                    </div>
-                </div>
-            </div>
-
-            {{!-- <div class="card p-4 my-3">
+            <div class="card p-4 my-3">
                 <header>
                     <div class="d-flex align-items-center">
                         <h4 class="m-0 d-inline">Create New Post</h4>
@@ -75,23 +47,19 @@
                 </header>
 
                 <form>
-                    <label for="post-title">Title</label>
+                    <label for="post-title">Title:</label>
                     <input type="text" name="post-title" class="p-2 mb-2 w-100 border-0 rounded" id="post-title">
 
-                    <label for="post-body">Body</label>
+                    <label for="post-body">Body:</label>
                     <textarea name="post-body" cols="30" rows="3" class="p-2 mb-3 w-100 border-0 rounded" id="post-body"></textarea>
 
                     <button type="submit" class="btn btn-primary float-right" id="submit-post">Submit</button>
                 </form>
-            </div> --}}
+            </div>
 
             <div>
                 {{#each posts}}
                     {{> posts/new-post}}
-                {{else}}
-                    <div class="card my-3 text-center text-white">
-                        <p class="p-4 m-0">No posts...</p>
-                    </div>
                 {{/each}}
             </div>
         </div>
@@ -107,12 +75,6 @@
                 <a href="" class="link">All Posts</a>
                 <span class="m-0 px-3">|</span>
                 <i class="fas fa-address-card"></i>
-            </div>
-
-            <div class="p-3 mb-3 text-white rounded d-flex align-items-center justify-content-end sidebar">
-                <button type="button" class="btn p-0 text-white" id="new-post" data-toggle="modal" data-target="#new-post-modal">New Post</button>
-                <span class="m-0 px-3">|</span>
-                <i class="fas fa-plus"></i>
             </div>
         </div>
 
