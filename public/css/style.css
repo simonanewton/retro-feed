@@ -52,3 +52,13 @@ header, .sidebar {
     outline: none;
     box-shadow: none;
 }
+
+.share-post:hover {
+    background-color: blue;
+    color: white;
+}
+
+.delete-post:hover {
+    background-color: red;
+    color: white;
+}

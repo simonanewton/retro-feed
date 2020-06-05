@@ -44,4 +44,19 @@ module.exports = (app) => {
         // send the post to the response in a JSON format
         res.json(post);
     });
+
+    app.delete("/api/posts/:id", async (req, res) => {
+        // get the post id from the request
+        const postId = req.params.id;
+
+        // delete the selected post from the database
+        const response = await db.Post.destroy({
+            where: {
+                id: postId
+            }
+        });
+
+        // send the response in a JSON format
+        res.json(response);
+    });
 }

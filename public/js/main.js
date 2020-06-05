@@ -34,4 +34,18 @@ $(document).ready(() => {
         // reload the window
         location.reload();
     });
+
+    $(".delete-post").click(async (event) => {
+        // get the post id from the selected post
+        const postId = $(event.target).data("id");
+
+        // send ajax delete request with post id
+        await $.ajax({
+            method: "DELETE",
+            url: "/api/posts/" + postId
+        });
+
+        // reload the window
+        location.reload();
+    });
 });
