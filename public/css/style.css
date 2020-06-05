@@ -4,7 +4,7 @@ body {
     font-family: 'IBM Plex Mono', monospace;
 }
 
-header, .sidebar {
+header, footer, .sidebar, .modal-body {
     background-color: #333366;
 }
 
@@ -18,9 +18,14 @@ header, .sidebar {
     color: white;
 }
 
-.link:hover {
+.link:hover, #new-post:hover {
     color: white;
     text-decoration: underline;
+}
+
+.btn:active, .btn:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 #search-bar {
