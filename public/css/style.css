@@ -28,6 +28,9 @@ header, footer, .sidebar, .modal-body {
     box-shadow: none;
 }
 
+
+/* Styling for Posts */
+
 #search-bar {
     background-color: #333366;
 }
@@ -52,6 +55,9 @@ header, footer, .sidebar, .modal-body {
 #search-input:focus, #post-title:focus, #post-body:focus {
     outline: none;
 }
+
+
+/* Styling for User Profile */
 
 .icon:focus {
     outline: none;
@@ -85,4 +91,20 @@ header, footer, .sidebar, .modal-body {
     text-align:center;
     color:#fff !important;
     z-index:2;
+}
+
+
+/* Styling for Signup and Login */
+
+.signup.card {
+    min-width: 50%;
+}
+
+.signup .form-group {
+    margin: 20px 0;
+}
+
+.signup h2 {
+    font-size: 2rem;
+    color: #33ffff;
 }
