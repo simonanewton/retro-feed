@@ -30,11 +30,21 @@
         <div class="col-6">
             <div>
                 <form class="border-0 rounded d-flex" id="search-bar">
-                    <input type="text" placeholder="Search" class="px-3 py-2 w-100 text-white border-0" id="search-input">
+                    <input type="text" placeholder="Search" class="px-3 py-2 w-100 text-white border-0"
+                        id="search-input">
                     <button type="submit" class="btn text-white border-0" id="search-button">
                         <i class="fas fa-search px-2 py-1" id="search-icon"></i>
                     </button>
                 </form>
+            </div>
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4>Thumbnail Headline</h4>
+                    <p>short thumbnail description</p>
+                    <p><a href="" class="label label-danger text-white" rel="tooltip" title="Zoom">Zoom</a>
+                        <a href="" class="label label-default text-white" rel="tooltip" title="Download now">Download</a></p>
+                </div>
+                <img src="https://images.unsplash.com/photo-1572617574118-f5f753cef030?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60" alt="...">
             </div>
 
             {{!-- <div class="card p-4 my-3">
@@ -57,13 +67,13 @@
                 </form>
             </div> --}}
 
-           <div>
+            <div>
                 {{#each posts}}
-                    {{> posts/new-post}}
+                {{> posts/new-post}}
                 {{else}}
-                    <div class="card my-3 text-center text-white">
-                        <p class="p-4 m-0">No posts...</p>
-                    </div>
+                <div class="card my-3 text-center text-white">
+                    <p class="p-4 m-0">No posts...</p>
+                </div>
                 {{/each}}
             </div>
         </div>
