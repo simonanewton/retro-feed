@@ -83,7 +83,8 @@ header, footer, .sidebar, .modal-body {
     position:absolute;
     top:0;
     right:0;
-    background:rgba(66, 139, 202, 0.75);
+    /* background:rgba(66, 139, 202, 0.75); */
+    background:rgba(92, 184, 92, 0.75);
     width:100%;
     height:100%;
     padding:2%;
