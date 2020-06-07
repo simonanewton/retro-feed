@@ -3,15 +3,22 @@ const passport = require("../config/passport");
 
 module.exports = (app) => {
     app.post("/api/signup", async (req, res) => {
-        // create an array of all users in the database
-        await db.User.create({
-            email: req.body.email,
-            username: req.body.username,
-            password: req.body.password
-        });
+        try {
+            // create an array of all users in the database
+            await db.User.create({
+                email: req.body.email,
+                username: req.body.username,
+                password: req.body.password
+            });
 
-        // redirect to post /api/login
-        res.redirect(307, "/api/login");
+            // redirect to post /api/login
+            res.redirect(307, "/api/login");
+
+        } catch (err) {
+            console.log("Error creating User: ", err.original.sqlMessage);
+
+            res.send(err);
+        }
     });
 
     app.post("/api/login", passport.authenticate("local"), async (req, res) => {
