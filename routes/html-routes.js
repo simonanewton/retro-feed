@@ -1,10 +1,11 @@
 const db = require("../models");
 const moment = require("moment");
+const authenticate = require("../config/authenticate");
 
 module.exports = (app) => {
     app.get("/", async (req, res) => {
         // If the user already has an account send them to the posts page
-        if (req.User) res.redirect("/posts");
+        if (req.user) res.redirect("/posts");
         
         // else send them to the login page
         res.render("login");
@@ -12,7 +13,7 @@ module.exports = (app) => {
 
     app.get("/login", async (req, res) => {
         // If the user already has an account send them to the posts page
-        if (req.User) res.redirect("/posts");
+        if (req.user) res.redirect("/posts");
         
         // else send them to the login page
         res.render("login");
@@ -20,13 +21,21 @@ module.exports = (app) => {
 
     app.get("/signup", async (req, res) => {
         // If the user already has an account send them to the posts page
-        if (req.User) res.redirect("/posts");
+        if (req.user) res.redirect("/posts");
         
         // else send them to the signup page
         res.render("signup");
     });
 
-    app.get("/posts", async (req, res) => {
+    app.get("/logout", (req, res) => {
+        // logout the user
+        req.logout();
+
+        // redirect the user to the homepage
+        res.redirect("/");
+    });
+
+    app.get("/posts", authenticate, async (req, res) => {
         // create an array of all posts in the database
         let posts = await db.Post.findAll({});
 

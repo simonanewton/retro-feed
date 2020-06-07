@@ -1,18 +1,12 @@
 $(document).ready(() => {
-	// Getting references to our form and inputs
-	const loginForm = $("form.login");
-	const emailInput = $("input#email-input");
-	const passwordInput = $("input#password-input");
-
-	// When the form is submitted, we validate there's an email and password entered
-	loginForm.submit((event) => {
+	$("form.login").submit((event) => {
 		// prevent page refresh
 		event.preventDefault();
 
 		// create an object to collect user data
 		let userData = {
-			email: emailInput.val().trim(),
-			password: passwordInput.val().trim()
+			email: $("input#email-input").val().trim(),
+			password: $("input#password-input").val().trim()
 		};
 
 		// if either of the fields have been left blank, exit function
@@ -20,14 +14,16 @@ $(document).ready(() => {
 
 		// otherwise, run the loginUser function
 		loginUser(userData);
-
-		// emailInput.val("");
-		// passwordInput.val("");
 	});
 
-	// loginUser does a post to our "api/login" route and if successful, redirects us the the /feed page
-	const loginUser = (userData) => {
-		$.post("/api/login", userData);
+	const loginUser = async (userData) => {
+		// ajax post to the login api with userData
+		await $.post("/api/login", userData);
+
+		// if successful, send the user to the posts page
 		window.location.replace("/posts");
+
+		// if an error occurs, notify the user
+		// insert notification here
 	}
 });

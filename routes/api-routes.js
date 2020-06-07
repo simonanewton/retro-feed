@@ -1,9 +1,10 @@
 const db = require("../models");
+const passport = require("../config/passport");
 
 module.exports = (app) => {
     app.post("/api/signup", async (req, res) => {
         // create an array of all users in the database
-        const user = await db.newUser.create({
+        await db.User.create({
             email: req.body.email,
             username: req.body.username,
             password: req.body.password
@@ -13,14 +14,14 @@ module.exports = (app) => {
         res.redirect(307, "/api/login");
     });
 
-    app.post("/api/login", async (req, res) => {
-        // temporary
-        res.json(req.body);
+    app.post("/api/login", passport.authenticate("local"), async (req, res) => {
+        // send user data to the response
+        res.json(req.user);
     });
 
     app.get("/api/users", async (req, res) => {
         // create an array of all users in the database
-        const users = await db.newUser.findAll({});
+        const users = await db.User.findAll({});
 
         // send the array of users to the response
         res.json(users);
@@ -50,11 +51,7 @@ module.exports = (app) => {
         const postId = req.params.id;
 
         // delete the selected post from the database
-        const response = await db.Post.destroy({
-            where: {
-                id: postId
-            }
-        });
+        const response = await db.Post.destroy({ where: { id: postId } });
 
         // send the response in a JSON format
         res.json(response);

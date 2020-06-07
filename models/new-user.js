@@ -1,8 +1,8 @@
 const bcrypt = require("bcryptjs");
 
 module.exports = (sequelize, DataTypes) => {
-    // Create newUser database with User rows
-    let User = sequelize.define("newUser", {
+    // Create User database with email, username, and password
+    var User = sequelize.define("User", {
         email: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -22,15 +22,12 @@ module.exports = (sequelize, DataTypes) => {
             is: /^[0-9a-f]{64}$/i
         }
     });
-    // This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
-    User.prototype.validPassword = (password) => {
-        return bcrypt.compareSync(password, this.password);
-    };
 
-    // Hash user's password beforeCreate into newUsers database 
-    User.addHook("beforeCreate", (user) => {
-        user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
-    });
+    // check if an unhashed password entered by the user can be compared to the hashed password stored in our database
+    User.prototype.validPassword = (user, password) => bcrypt.compareSync(password, user.password);
+
+    // hash user's password beforeCreate into User database 
+    User.addHook("beforeCreate", (user) => user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null));
 
     return User;
 }
