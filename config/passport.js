@@ -14,12 +14,8 @@ const validate = async (email, password, done) => {
 
 passport.use(new LocalStrategy({ usernameField: "email" }, validate));
 
-passport.serializeUser(function (user, cb) {
-    cb(null, user);
-});
+passport.serializeUser((user, cb) => cb(null, user));
 
-passport.deserializeUser(function (obj, cb) {
-    cb(null, obj);
-});
+passport.deserializeUser((obj, cb) => cb(null, obj));
 
 module.exports = passport;
