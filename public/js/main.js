@@ -49,12 +49,4 @@ $(document).ready(() => {
         location.reload();
     });
 
-    $('.thumbnail').hover(
-        function(){
-            $(this).find('.caption').fadeIn(250); //.slideUp(250)
-        },
-        function(){
-            $(this).find('.caption').fadeOut(250); //.slideDown(205)
-        }
-    ); 
 });
