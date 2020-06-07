@@ -38,6 +38,7 @@ module.exports = (app) => {
     app.post("/api/posts", async (req, res) => {
         // create a new post with the new-post model
         const post = await db.Post.create({
+            username: req.body.username,
             title: req.body.title,
             body: req.body.body
         });
@@ -55,5 +56,27 @@ module.exports = (app) => {
 
         // send the response in a JSON format
         res.json(response);
+    });
+
+    app.get("/api/user_data", async (req, res) => {
+        // if the user is not logged in, send an empty object
+        if (!req.user) res.json({});
+
+        // else send the users stored information to the response
+        else {
+            res.json({
+                email: req.user.email,
+                username: req.user.username,
+                id: req.user.id
+            });
+        }
+    });
+
+    app.get("/api/users/:username", async (req, res) => {
+        // get user from the database
+        const user = await db.User.findOne({ where: { username: req.params.username } });
+
+        // send the user to the response
+        res.json(user);
     });
 }

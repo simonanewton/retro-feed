@@ -21,6 +21,7 @@ $(document).ready(() => {
 
         // create object with post information
         const newPost = {
+            username: (await $.get("/api/user_data")).username,
             title: $("#post-title").val().trim(),
             body: $("#post-body").val().trim()
         };
@@ -48,5 +49,4 @@ $(document).ready(() => {
         // reload the window
         location.reload();
     });
-
 });
