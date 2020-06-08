@@ -3,15 +3,25 @@ const passport = require("../config/passport");
 
 module.exports = (app) => {
     app.post("/api/signup", async (req, res) => {
-        // create an array of all users in the database
-        await db.User.create({
-            email: req.body.email,
-            username: req.body.username,
-            password: req.body.password
-        });
+        try {
+            // create an array of all users in the database
+            await db.User.create({
+                email: req.body.email,
+                username: req.body.username,
+                password: req.body.password
+            });
 
-        // redirect to post /api/login
-        res.redirect(307, "/api/login");
+            // redirect to post /api/login
+            res.redirect(307, "/api/login");
+        }
+
+        catch (err) {
+            // console.log where the error is coming from
+            console.log("/api/signup error!");
+
+            // send status and error to the response
+            res.status(401).json(err);
+        }
     });
 
     app.post("/api/login", passport.authenticate("local"), async (req, res) => {
@@ -73,10 +83,20 @@ module.exports = (app) => {
     });
 
     app.get("/api/users/:username", async (req, res) => {
-        // get user from the database
-        const user = await db.User.findOne({ where: { username: req.params.username } });
+        try {
+            // get user from the database
+            const user = await db.User.findOne({ where: { username: req.params.username } });
 
-        // send the user to the response
-        res.json(user);
+            // send the user to the response
+            res.json(user);
+        }
+
+        catch (err) {
+            // console.log where the error is coming from
+            console.log("/api/users/:username error!");
+
+            // send status and error to the response
+            res.status(401).json(err);
+        }
     });
 }

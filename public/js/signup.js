@@ -1,19 +1,13 @@
 $(document).ready(() => {
-	// Getting references to our form and input
-	const signUpForm = $("form.signup");
-	const usernameInput = $("input#username-input");
-	const emailInput = $("input#email-input");
-	const passwordInput = $("input#password-input");
-
-	signUpForm.submit((event) => {
+	$("form.signup").submit((event) => {
 		// prevent page refresh
 		event.preventDefault();
-		
+
 		// create an object to collect user data
 		let newUser = {
-			email: emailInput.val().trim(),
-			username: usernameInput.val().trim(),
-			password: passwordInput.val().trim()
+			email: $("input#email-input").val().trim(),
+			username: $("input#username-input").val().trim(),
+			password: $("input#password-input").val().trim()
 		};
 
 		// if either of the fields have been left blank, exit function
@@ -21,17 +15,26 @@ $(document).ready(() => {
 
 		// otherwise, run the signUpUser function
 		signUpUser(newUser);
-
-		// Simon - I don't think this is necessary but I'm not sure yet
-		// emailInput.val("");
-		// usernameInput.val("");
-		// passwordInput.val("");
 	});
 
-	// Does a POST to the signup route. If successful, we are redirected to the user's feed
-	// Otherwise we log any errors
 	const signUpUser = async (newUser) => {
-		await $.post("/api/signup", newUser);
-		window.location.replace("/posts");
+		try {
+			// ajax post to the signup api with newUser
+			await $.post("/api/signup", newUser);
+
+			// console.log success
+			console.log("Signup success!");
+
+			// if successful, send the user to the posts page
+			window.location.replace("/posts");
+		}
+
+		catch (err) {
+			// console.log error
+			console.log("Signup error!");
+
+			// throw the caught error
+			throw err;
+		}
 	}
 });

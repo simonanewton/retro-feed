@@ -8,7 +8,7 @@ module.exports = (app) => {
         if (req.user) res.redirect("/posts");
         
         // else send them to the login page
-        res.render("login");
+        else res.render("login");
     });
 
     app.get("/login", async (req, res) => {
@@ -16,7 +16,7 @@ module.exports = (app) => {
         if (req.user) res.redirect("/posts");
         
         // else send them to the login page
-        res.render("login");
+        else res.render("login");
     });
 
     app.get("/signup", async (req, res) => {
@@ -24,7 +24,7 @@ module.exports = (app) => {
         if (req.user) res.redirect("/posts");
         
         // else send them to the signup page
-        res.render("signup");
+        else res.render("signup");
     });
 
     app.get("/logout", (req, res) => {

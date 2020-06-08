@@ -17,13 +17,23 @@ $(document).ready(() => {
 	});
 
 	const loginUser = async (userData) => {
-		// ajax post to the login api with userData
-		await $.post("/api/login", userData);
+		try {
+			// ajax post to the login api with userData
+			await $.post("/api/login", userData);
 
-		// if successful, send the user to the posts page
-		window.location.replace("/posts");
+			// console.log success
+			console.log("Login success!");
 
-		// if an error occurs, notify the user
-		// insert notification here
+			// if successful, send the user to the posts page
+			window.location.replace("/posts");
+		}
+
+		catch (err) {
+			// console.log error
+			console.log("Login error!");
+
+			// throw the caught error
+			throw err;
+		}
 	}
 });
