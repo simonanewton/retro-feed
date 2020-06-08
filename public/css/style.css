@@ -1,21 +1,45 @@
-/* Global Styles */
+/* global styles ------------------------------------- */
+html, body {
+  height: 100vh;
+}
 
 body {
   font-family: "IBM Plex Mono", monospace;
+  overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+main {
+  height: 79%;
+}
+
+.container {
+  height: 100%;
 }
 
 header,
 footer,
 .sidebar,
-.modal-body {
+.modal-body,
+.card {
   background-color: #333366;
 }
 
 .card {
-  background-color: #333366;
   color: white;
   border-style: none;
 }
+
+.btn:active,
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* styling for posts page ------------------------------------- */
 
 .link,
 .link:visited {
@@ -28,13 +52,9 @@ footer,
   text-decoration: underline;
 }
 
-.btn:active,
-.btn:focus {
-  outline: none;
-  box-shadow: none;
+.active {
+  color: #33ffff !important;
 }
-
-/* Styling for Posts */
 
 #search-bar {
   background-color: #333366;
@@ -49,11 +69,6 @@ footer,
   color: white;
 }
 
-#search-button:active,
-#search-button:focus {
-  box-shadow: none;
-}
-
 #search-button:active > #search-icon {
   color: lightgray;
 }
@@ -64,7 +79,20 @@ footer,
   outline: none;
 }
 
-/* Styling for User Profile */
+.feed-div, .feed {
+  height: 100%;
+}
+
+.feed {
+  overflow-y: auto;
+  border-radius: .25rem;
+}
+
+.feed::-webkit-scrollbar {
+  display: none;
+}
+
+/* styling for individual posts ------------------------------------- */
 
 .icon:focus {
   outline: none;
@@ -81,13 +109,17 @@ footer,
   color: white;
 }
 
-/* Profile Header */
-.profileHeader {
-  overflow: hidden;
-  margin: 10px 0 10px 0;
+/* styling for user profile ------------------------------------- */
+
+#profile-header {
+  overflow-x: hidden;
 }
 
-.profileImg {
+#profile-bg {
+  max-height: 180px;
+}
+
+#profile-img {
   margin-top: -75px;
   margin-left: 40px;
   height: 150px;
@@ -95,7 +127,7 @@ footer,
   border-radius: 50%;
 }
 
-/* Styling for Signup and Login */
+/* styling for signup and login ------------------------------------- */
 
 .signup.card {
   min-width: 50%;
