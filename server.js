@@ -3,13 +3,12 @@ const exphbs = require("express-handlebars");
 const session = require("express-session");
 const dotenv = require("dotenv");
 const passport = require("./config/passport");
+const db = require("./models");
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT;
-
-const db = require("./models");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
