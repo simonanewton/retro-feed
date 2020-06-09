@@ -11,7 +11,11 @@ $(document).ready(() => {
 		};
 
 		// if either of the fields have been left blank, exit function
-		if (!newUser.email || !newUser.username || !newUser.password) return;
+		if (!newUser.email || !newUser.username || !newUser.password) {
+			$("#alert .msg").text("Email, username, and/or password cannot be blank.");
+			$("#alert").fadeIn(500);
+			return;
+		};
 
 		// otherwise, run the signUpUser function
 		signUpUser(newUser);
