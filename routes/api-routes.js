@@ -48,6 +48,7 @@ module.exports = (app) => {
     app.post("/api/posts", async (req, res) => {
         // create a new post with the new-post model
         const post = await db.Post.create({
+            UserId: req.body.userId,
             username: req.body.username,
             title: req.body.title,
             body: req.body.body

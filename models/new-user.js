@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 
 module.exports = (sequelize, DataTypes) => {
     // Create User database with email, username, and password
-    var User = sequelize.define("User", {
+    let User = sequelize.define("User", {
         email: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
             is: /^[0-9a-f]{64}$/i
         }
     });
+
+    // associate Post with User
+    // If User is deleted, cascade to Posts
+    User.associate = (models) => { User.hasMany(models.Post, { onDelete: "cascade" } )};
 
     // check if an unhashed password entered by the user can be compared to the hashed password stored in our database
     User.prototype.validPassword = (user, password) => bcrypt.compareSync(password, user.password);

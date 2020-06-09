@@ -1,7 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define("Post", {
+    let Post = sequelize.define("Post", {
         username: DataTypes.STRING,
         title: DataTypes.STRING,
         body: DataTypes.STRING
     });
+
+    // add a belongsTo association to Posts
+    Post.associate = (models) => { Post.belongsTo(models.User, { foreignKey: { allowNull: false } }) };
+
+    return Post;
 }

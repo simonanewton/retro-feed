@@ -21,6 +21,7 @@ $(document).ready(() => {
 
         // create object with post information
         const newPost = {
+            userId: (await $.get("/api/user_data")).id,
             username: (await $.get("/api/user_data")).username,
             title: $("#post-title").val().trim(),
             body: $("#post-body").val().trim()
