@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     let Post = sequelize.define("Post", {
         username: DataTypes.STRING,
-        title: DataTypes.STRING,
+        displayName: DataTypes.STRING,
         body: DataTypes.STRING
     });
 

@@ -74,7 +74,6 @@ footer,
 }
 
 #search-input:focus,
-#post-title:focus,
 #post-body:focus {
   outline: none;
 }

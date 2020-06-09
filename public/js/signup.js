@@ -7,12 +7,13 @@ $(document).ready(() => {
 		let newUser = {
 			email: $("input#email-input").val().trim(),
 			username: $("input#username-input").val().trim(),
+			displayName: $("input#display-name-input").val().trim(),
 			password: $("input#password-input").val().trim()
 		};
 
-		// if either of the fields have been left blank, exit function
-		if (!newUser.email || !newUser.username || !newUser.password) {
-			$("#alert .msg").text("Email, username, and/or password cannot be blank.");
+		// if any of the fields have been left blank, exit function
+		if (!newUser.email || !newUser.username || !newUser.displayName || !newUser.password) {
+			$("#alert .msg").text("Email, username, display name, and/or password cannot be blank.");
 			$("#alert").fadeIn(500);
 			return;
 		};

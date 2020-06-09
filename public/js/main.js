@@ -19,16 +19,20 @@ $(document).ready(() => {
         // prevent page refresh
         event.preventDefault();
 
+        const user = await $.get("/api/userData");
+
+        console.log(user);
+
         // create object with post information
         const newPost = {
-            userId: (await $.get("/api/user_data")).id,
-            username: (await $.get("/api/user_data")).username,
-            title: $("#post-title").val().trim(),
+            UserId: user.id,
+            username: user.username,
+            displayName: user.displayName,
             body: $("#post-body").val().trim()
         };
 
-        // if the post title or the post body is empty, exit function
-        if (!newPost.title || !newPost.body) return;
+        // if the post body is empty, exit function
+        if (!newPost.body) return;
 
         // send ajax post request with post object
         await $.post("/api/posts", newPost);

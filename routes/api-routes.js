@@ -8,6 +8,7 @@ module.exports = (app) => {
             await db.User.create({
                 email: req.body.email,
                 username: req.body.username,
+                displayName: req.body.displayName,
                 password: req.body.password
             });
 
@@ -48,13 +49,13 @@ module.exports = (app) => {
     app.post("/api/posts", async (req, res) => {
         // create a new post with the new-post model
         const post = await db.Post.create({
-            UserId: req.body.userId,
+            UserId: req.body.UserId,
             username: req.body.username,
-            title: req.body.title,
+            displayName: req.body.displayName,
             body: req.body.body
         });
 
-        // send the post to the response in a JSON format
+        // send the post data to the response
         res.json(post);
     });
 
@@ -65,28 +66,29 @@ module.exports = (app) => {
         // delete the selected post from the database
         const response = await db.Post.destroy({ where: { id: postId } });
 
-        // send the response in a JSON format
+        // send the response data to the response
         res.json(response);
     });
 
-    app.get("/api/user_data", async (req, res) => {
+    app.get("/api/userData", async (req, res) => {
         // if the user is not logged in, send an empty object
         if (!req.user) res.json({});
 
         // else send the users stored information to the response
         else {
             res.json({
+                id: req.user.id,
                 email: req.user.email,
                 username: req.user.username,
-                id: req.user.id
+                displayName: req.user.displayName
             });
         }
     });
 
-    app.get("/api/users/:username", async (req, res) => {
+    app.get("/api/users/:id", async (req, res) => {
         try {
             // get user from the database
-            const user = await db.User.findOne({ where: { username: req.params.username } });
+            const user = await db.User.findOne({ where: { id: req.params.id } });
 
             // send the user to the response
             res.json(user);
@@ -94,7 +96,7 @@ module.exports = (app) => {
 
         catch (err) {
             // console.log where the error is coming from
-            console.log("/api/users/:username error!");
+            console.log("/api/users/:id error!");
 
             // send status and error to the response
             res.status(401).json(err);
