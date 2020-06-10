@@ -46,13 +46,42 @@
             <div class="feed">
                 <div class="mb-3">
 
+                    {{!-- profil pic modal --}}
+                    <div class="modal fade" id="new-profilePic-modal" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <header class="modal-header text-white">
+                                    <h4 class="modal-title d-inline">Choose your avatar!</h4>
+                                    <button type="button" class="close text-white" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span>&times;</span>
+                                    </button>
+                                </header>
+
+                                <div class="modal-body text-white">
+                                    <form>
+                                        <label for="post-body">Body</label>
+                                        <textarea name="post-body" cols="30" rows="3"
+                                            class="p-2 mb-3 w-100 border-0 rounded" id="post-body"></textarea>
+                                    </form>
+                                </div>
+
+                                <footer class="modal-footer">
+                                    <button type="submit" class="btn btn-primary float-right"
+                                        id="submit-post">Submit</button>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+
                     {{!-- profile images --}}
                     <div>
                         <img class="w-100 rounded" id="profile-bg"
                             src="https://images.unsplash.com/photo-1572617574118-f5f753cef030?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
                             alt="...">
                         <img class="ml-3 mb-1 rounded-circle" id="profile-img"
-                            src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png" alt="profile picture">
+                            src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png" alt="profile picture"
+                            data-toggle="modal" data-target="#new-profilePic-modal">
                     </div>
 
                     {{!-- user bio --}}
