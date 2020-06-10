@@ -3,11 +3,11 @@ const moment = require("moment");
 const authenticate = require("../config/authenticate");
 
 module.exports = (app) => {
-    /* Log in / Signup ------------------------------------- */
+    // login and signup -------------------------------------
     app.get("/", async (req, res) => {
         // If the user already has an account send them to the posts page
         if (req.user) res.redirect("/posts");
-        
+
         // else send them to the login page
         else res.render("login");
     });
@@ -15,7 +15,7 @@ module.exports = (app) => {
     app.get("/login", async (req, res) => {
         // If the user already has an account send them to the posts page
         if (req.user) res.redirect("/posts");
-        
+
         // else send them to the login page
         else res.render("login");
     });
@@ -23,7 +23,7 @@ module.exports = (app) => {
     app.get("/signup", async (req, res) => {
         // If the user already has an account send them to the posts page
         if (req.user) res.redirect("/posts");
-        
+
         // else send them to the signup page
         else res.render("signup");
     });
@@ -36,63 +36,80 @@ module.exports = (app) => {
         res.redirect("/");
     });
 
-    /* Posts Feed ------------------------------------- */
+    // posts feed -------------------------------------
     app.get("/posts", authenticate, async (req, res) => {
-        // create an array of all posts in the database
-        let posts = await db.Post.findAll({});
+        try {
+            // create an array of all posts in the database
+            let posts = await db.Post.findAll({});
 
-        // isolate the post data from the array
-        posts = posts.map(post => post.dataValues);
+            // isolate the post data from the array
+            posts = posts.map(post => post.dataValues);
 
-        // modify the createdAt variable with moment to show how long ago the post was created
-        posts.map(post => post.createdAt = moment(post.createdAt, 'YYYY-MM-DDTHH:mm:ss.000Z').fromNow());
+            // modify the createdAt variable with moment to show how long ago the post was created
+            posts.map(post => post.createdAt = moment(post.createdAt, 'YYYY-MM-DDTHH:mm:ss.000Z').fromNow());
 
-        // reverse the array to show the most recent posts first
-        posts.reverse();
+            // reverse the array to show the most recent posts first
+            posts.reverse();
 
-        // render the posts.handlebars page with the posts
-        // pass current username to generate unique URL for Profile link
-        res.render("posts", {
-            posts: posts,
-            username: req.user.username
-        });
+            // render the posts.handlebars page with the posts and username
+            res.render("posts", {
+                posts: posts,
+                username: req.user.username
+            });
+        }
+
+        catch (err) {
+            // console.log where the error is coming from
+            console.log("/posts error!");
+
+            // send status and error to the response
+            res.status(401).json(err);
+        }
     });
 
-    /* User Profile ------------------------------------- */
+    // user profile -------------------------------------
     app.get("/:username", authenticate, async (req, res) => {
-        // use username parameter for WHERE queries
-        let currentUser = req.params.username;
+        try {
+            // get the given username from the request
+            let username = req.params.username;
 
-        /* get User Posts */
-        // create an array of all posts in the database WHERE username = current user
-        let posts = await db.Post.findAll({
-            where: {
-                username: currentUser
-            }
-        });
+            // create an array of all posts in the database from a specific user
+            let posts = await db.Post.findAll({
+                where: {
+                    username: username
+                }
+            });
 
-        // isolate the post data from the array
-        posts = posts.map(post => post.dataValues);
+            // isolate the post data from the array
+            posts = posts.map(post => post.dataValues);
 
-        // modify the createdAt variable with moment to show how long ago the post was created
-        posts.map(post => post.createdAt = moment(post.createdAt, 'YYYY-MM-DDTHH:mm:ss.000Z').fromNow());
+            // modify the createdAt variable with moment to show how long ago the post was created
+            posts.map(post => post.createdAt = moment(post.createdAt, 'YYYY-MM-DDTHH:mm:ss.000Z').fromNow());
 
-        // reverse the array to show the most recent posts first
-        posts.reverse();
+            // reverse the array to show the most recent posts first
+            posts.reverse();
 
-        /* get User Info */
-        let userInfo = await db.User.findAll({
-            where: {
-                username: currentUser
-            }
-        });
+            // get the data for the specific user
+            let user = await db.User.findOne({
+                where: {
+                    username: username
+                }
+            });
 
-        // render the posts.handlebars page with posts and user info
-        res.render("profile", {
-            posts: posts,
-            displayName: userInfo[0].dataValues.displayName,
-            username: userInfo[0].dataValues.username
-        });
+            // render the posts.handlebars page with posts and user info
+            res.render("profile", {
+                posts: posts,
+                displayName: user.dataValues.displayName,
+                username: user.dataValues.username
+            });
+        }
+
+        catch (err) {
+            // console.log where the error is coming from
+            console.log("/users/:username error!");
+
+            // send status and error to the response
+            res.status(401).json(err);
+        }
     });
-
 }

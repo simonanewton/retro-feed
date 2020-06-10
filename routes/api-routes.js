@@ -2,6 +2,7 @@ const db = require("../models");
 const passport = require("../config/passport");
 
 module.exports = (app) => {
+    // login and signup api -------------------------------------
     app.post("/api/signup", async (req, res) => {
         try {
             // create an array of all users in the database
@@ -18,7 +19,7 @@ module.exports = (app) => {
 
         catch (err) {
             // console.log where the error is coming from
-            console.log("/api/signup error!");
+            console.log("post /api/signup error!");
 
             // send status and error to the response
             res.status(401).json(err);
@@ -30,46 +31,70 @@ module.exports = (app) => {
         res.json(req.user);
     });
 
-    app.get("/api/users", async (req, res) => {
-        // create an array of all users in the database
-        const users = await db.User.findAll({});
-
-        // send the array of users to the response
-        res.json(users);
-    });
-
+    // posts api -------------------------------------
     app.get("/api/posts", async (req, res) => {
-        // create an array of all posts in the database
-        const posts = await db.Post.findAll({});
+        try {
+            // create an array of all posts in the database
+            const posts = await db.Post.findAll({});
 
-        // send the array of posts to the response
-        res.json(posts);
+            // send the array of posts to the response
+            res.json(posts);
+        }
+
+        catch (err) {
+            // console.log where the error is coming from
+            console.log("get /api/posts error!");
+            
+            // send status and error to the response
+            res.status(401).json(err);
+        }
     });
 
     app.post("/api/posts", async (req, res) => {
-        // create a new post with the new-post model
-        const post = await db.Post.create({
-            UserId: req.body.UserId,
-            username: req.body.username,
-            displayName: req.body.displayName,
-            body: req.body.body
-        });
+        try {
+            // create a new post with the new-post model
+            const post = await db.Post.create({
+                UserId: req.body.UserId,
+                username: req.body.username,
+                displayName: req.body.displayName,
+                body: req.body.body
+            });
 
-        // send the post data to the response
-        res.json(post);
+            // send the post data to the response
+            res.json(post);
+        }
+
+        catch (err) {
+            // console.log where the error is coming from
+            console.log("post /api/posts error!");
+
+            // send status and error to the response
+            res.status(401).json(err);
+        }
     });
 
     app.delete("/api/posts/:id", async (req, res) => {
-        // get the post id from the request
-        const postId = req.params.id;
+        try {
+            // get the post id from the request
+            const postId = req.params.id;
 
-        // delete the selected post from the database
-        const response = await db.Post.destroy({ where: { id: postId } });
+            // delete the selected post from the database
+            const response = await db.Post.destroy({ where: { id: postId } });
 
-        // send the response data to the response
-        res.json(response);
+            // send the response data to the response
+            res.json(response);
+        }
+
+        catch (err) {
+            // console.log where the error is coming from
+            console.log("delete /api/posts/:id error!");
+
+            // send status and error to the response
+            res.status(401).json(err);
+        }
     });
 
+    // user information api -------------------------------------
     app.get("/api/userData", async (req, res) => {
         // if the user is not logged in, send an empty object
         if (!req.user) res.json({});
@@ -85,6 +110,24 @@ module.exports = (app) => {
         }
     });
 
+    app.get("/api/users", async (req, res) => {
+        try {
+            // create an array of all users in the database
+            const users = await db.User.findAll({});
+
+            // send the array of users to the response
+            res.json(users);
+        }
+
+        catch (err) {
+            // console.log where the error is coming from
+            console.log("get /api/users error!");
+
+            // send status and error to the response
+            res.status(401).json(err);
+        }
+    });
+
     app.get("/api/users/:id", async (req, res) => {
         try {
             // get user from the database
@@ -96,7 +139,7 @@ module.exports = (app) => {
 
         catch (err) {
             // console.log where the error is coming from
-            console.log("/api/users/:id error!");
+            console.log("get /api/users/:id error!");
 
             // send status and error to the response
             res.status(401).json(err);

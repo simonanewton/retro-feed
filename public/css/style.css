@@ -95,9 +95,7 @@ footer,
 
 .profile-pic {
   height: 90px;
-  border: solid;
-  border-width: 4px;
-  border-color: white;
+  border: 4px white solid;
   background-color: gray;
 }
 
@@ -118,20 +116,15 @@ footer,
 
 /* styling for user profile ------------------------------------- */
 
-#profile-header {
-  overflow-x: hidden;
-}
-
 #profile-bg {
   max-height: 180px;
 }
 
 #profile-img {
-  margin-top: -75px;
-  margin-left: 40px;
-  height: 150px;
-  border: 3px white solid;
-  border-radius: 50%;
+  margin-top: -100px;
+  height: 140px;
+  border: 4px white solid;
+  background-color: gray;
 }
 
 /* styling for signup and login ------------------------------------- */
@@ -147,4 +140,9 @@ footer,
 .signup h2 {
   font-size: 2rem;
   color: #33ffff;
+}
+
+#login-alert,
+#signup-alert {
+  display: none;
 }
