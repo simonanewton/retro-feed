@@ -44,7 +44,7 @@ module.exports = (app) => {
         catch (err) {
             // console.log where the error is coming from
             console.log("get /api/posts error!");
-            
+
             // send status and error to the response
             res.status(401).json(err);
         }
@@ -73,7 +73,6 @@ module.exports = (app) => {
         }
     });
 
-    
     app.delete("/api/posts/:id", async (req, res) => {
         try {
             // get the post id from the request
@@ -93,6 +92,17 @@ module.exports = (app) => {
             // send status and error to the response
             res.status(401).json(err);
         }
+    });
+
+    app.get("/api/all-post", async (req, res) => {
+        // create an array of all posts in the database
+        const posts = await db.Post.findAll({});
+        // db.Post.findAll({ include: [db.UserId] })
+        // ((dbPost) => {
+        //     res.json(dbPost);
+        //   });
+        // send the array of posts to the response
+        // res.json(posts);
     });
 
     // user information api -------------------------------------
@@ -145,16 +155,5 @@ module.exports = (app) => {
             // send status and error to the response
             res.status(401).json(err);
         }
-    });
-
-    app.get("/api/all-post", async (req, res) => {
-        // create an array of all posts in the database
-        const posts = await db.Post.findAll({});
-        // db.Post.findAll({ include: [db.UserId] })
-        // ((dbPost) => {
-        //     res.json(dbPost);
-        //   });
-        // send the array of posts to the response
-        // res.json(posts);
     });
 }

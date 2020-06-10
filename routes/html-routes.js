@@ -1,5 +1,6 @@
-const db = require("../models");
 const moment = require("moment");
+const Sequelize = require("sequelize");
+const db = require("../models");
 const authenticate = require("../config/authenticate");
 
 module.exports = (app) => {
@@ -106,7 +107,7 @@ module.exports = (app) => {
 
         catch (err) {
             // console.log where the error is coming from
-            console.log("/users/:username error!");
+            console.log("/:username error!");
 
             // send status and error to the response
             res.status(401).json(err);
@@ -114,19 +115,62 @@ module.exports = (app) => {
     });
 
     app.get("/all-post", async (req, res) => {
-        // create an array of all posts in the database
-        let posts = await db.Post.findAll({});
+        try {
+            // create an array of all posts in the database
+            let posts = await db.Post.findAll({});
 
-        // isolate the post data from the array
-        posts = posts.map(post => post.dataValues);
+            // isolate the post data from the array
+            posts = posts.map(post => post.dataValues);
 
-        // modify the createdAt variable with moment to show how long ago the post was created
-        posts.map(post => post.createdAt = moment(post.createdAt, 'YYYY-MM-DDTHH:mm:ss.000Z').fromNow());
+            // modify the createdAt variable with moment to show how long ago the post was created
+            posts.map(post => post.createdAt = moment(post.createdAt, 'YYYY-MM-DDTHH:mm:ss.000Z').fromNow());
 
-        // reverse the array to show the most recent posts first
-        posts.reverse();
+            // reverse the array to show the most recent posts first
+            posts.reverse();
 
-        // render the posts.handlebars page with the posts
-        res.render("all-post", { posts: posts });
+            // render the posts.handlebars page with the posts
+            res.render("all-post", { posts: posts });
+        }
+
+        catch (err) {
+            // console.log where the error is coming from
+            console.log("/all-post error!");
+
+            // send status and error to the response
+            res.status(401).json(err);
+        }
+    });
+
+    // search results ------------------------------------- 
+    app.get("/posts/:search", async (req, res) => {
+        try {
+            // replace search string separators with spaces
+            const search = (req.params.search).replace(/\+/g, ' ');
+
+            // create an array of all posts in the database where body includes search
+            let posts = await db.Post.findAll({ where: { body: { [Sequelize.Op.like]: "%" + search + "%" } } });
+
+            // isolate the post data from the array
+            posts = posts.map(post => post.dataValues);
+
+            // modify the createdAt variable with moment to show how long ago the post was created
+            posts.map(post => post.createdAt = moment(post.createdAt, 'YYYY-MM-DDTHH:mm:ss.000Z').fromNow());
+
+            // reverse the array to show the most recent posts first
+            posts.reverse();
+
+            // render the posts.handlebars page with the posts
+            res.render("posts", { layout: "alternate", posts: posts });
+        }
+
+        catch (err) {
+            // console.log where the error is coming from
+            console.log("/users/:username error!");
+
+            console.log(err);
+
+            // send status and error to the response
+            res.status(401).json(err);
+        }
     });
 }

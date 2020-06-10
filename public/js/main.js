@@ -1,18 +1,19 @@
 $(document).ready(() => {
-    $("#search-button").click((event) => {
+    $("#search-button").click(async (event) => {
         // prevent page refresh
         event.preventDefault();
 
-        // create object with search input
-        const input = {
-            search: $("#search-bar").val()
-        };
+        // collect search input from user
+        let search = $("#search-input").val().trim();
 
         // if search bar is empty, exit function
-        if (input.search === '') return;
+        if (search === '') return;
 
-        // console.log the input
-        console.log(input);
+        // modify search to remove whitespaces
+        search = search.replace(/ /g, "+");
+
+        // redirect user to page with search input results
+        window.location.assign("/posts/" + search);
     });
 
     $("#submit-post").click(async (event) => {
@@ -20,8 +21,6 @@ $(document).ready(() => {
         event.preventDefault();
 
         const user = await $.get("/api/userData");
-
-        console.log(user);
 
         // create object with post information
         const newPost = {
