@@ -1,6 +1,7 @@
 <main>
     <div class="container my-4 d-flex">
 
+        {{!-- Left Sidebar --}}
         <div class="col-3">
             <div class="p-3 mb-3 text-white rounded d-flex align-items-center sidebar">
                 <i class="fas fa-home"></i>
@@ -27,7 +28,9 @@
             </div>
         </div>
 
+        {{!-- Main --}}
         <div class="col-6 feed-div">
+            {{!-- Search --}}
             <div class="mb-3">
                 <form class="border-0 rounded d-flex" id="search-bar">
                     <input type="text" placeholder="Search" class="px-3 py-2 w-100 text-white border-0"
@@ -38,8 +41,11 @@
                 </form>
             </div>
 
+            {{!-- Profile --}}
             <div class="feed">
                 <div class="mb-3" id="profile-header">
+
+                    {{!-- Profile Images --}}
                     <div>
                         <img class="w-100 rounded" id="profile-bg"
                             src="https://images.unsplash.com/photo-1572617574118-f5f753cef030?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
@@ -49,9 +55,10 @@
                             alt="profile picture">
                     </div>
 
+                    {{!-- Bio --}}
                     <div class="mb-3">
-                        <h4><b>Username</b></h4>
-                        <h5>@username</h5>
+                        <h4><b>{{displayName}}</b></h4>
+                        <h5>@{{username}}</h5>
                         <hr class="border-dark">
 
                         <i class="fas fa-bullhorn d-inline"></i>
@@ -63,6 +70,7 @@
                         </h6>
                     </div>
 
+                    {{!-- Social Links --}}
                     <div class="mb-3">
                         <!--Facebook-->
                         <a href="" class="fb-ic mr-3" role="button"><i class="fab fa-lg fa-facebook-f"></i></a>
@@ -81,6 +89,7 @@
                     </div>
                 </div>
 
+                {{!-- User Posts --}}
                 <div>
                     {{#each posts}}
                     {{> posts/new-post}}
@@ -93,6 +102,7 @@
             </div>
         </div>
 
+        {{!-- Right Sidebar --}}
         <div class="col-3">
             <div class="p-3 mb-3 text-white rounded d-flex align-items-center justify-content-end sidebar">
                 <a href="" class="link">All Users</a>
