@@ -6,6 +6,10 @@ html, body {
 body {
   font-family: "IBM Plex Mono", monospace;
   overflow: hidden;
+  background-image: url("/images/2630643.jpg");
+  background-size: cover;
+  background-blend-mode: overlay;
+  background-color: rgb(171, 169, 169);
 }
 
 body::-webkit-scrollbar {
@@ -127,14 +131,24 @@ footer,
   background-color: gray;
 }
 
-/* styling for signup and login ------------------------------------- */
-
-body {
-  background-image: url("/images/2630643.jpg");
-  background-size: cover;
-  background-blend-mode: overlay;
-  background-color: rgb(171, 169, 169);
+.profile-bio {
+  background-color: #000033;
 }
+
+.profile-social {
+  color: #ccff99;
+}
+
+.profile-name {
+  color: #33ffff;
+}
+
+.profile-username {
+  color: #ccff99;
+}
+
+
+/* styling for signup and login ------------------------------------- */
 
 .signup.card {
   min-width: 50%;
@@ -152,4 +166,9 @@ body {
 #login-alert,
 #signup-alert {
   display: none;
+}
+
+.signup-bg {
+  color: #333366;
+  font-size: 0.75rem;
 }
