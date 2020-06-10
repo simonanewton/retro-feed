@@ -69,7 +69,7 @@ module.exports = (app) => {
     });
 
     // user profile -------------------------------------
-    app.get("/:username", authenticate, async (req, res) => {
+    app.get("/users/:username", authenticate, async (req, res) => {
         try {
             // get the given username from the request
             let username = req.params.username;
@@ -107,7 +107,7 @@ module.exports = (app) => {
 
         catch (err) {
             // console.log where the error is coming from
-            console.log("/:username error!");
+            console.log("/users/:username error!");
 
             // send status and error to the response
             res.status(401).json(err);
@@ -160,12 +160,12 @@ module.exports = (app) => {
             posts.reverse();
 
             // render the posts.handlebars page with the posts
-            res.render("posts", { layout: "alternate", posts: posts });
+            res.render("posts", { posts: posts });
         }
 
         catch (err) {
             // console.log where the error is coming from
-            console.log("/users/:username error!");
+            console.log("/posts/:search error!");
 
             console.log(err);
 
