@@ -12,6 +12,9 @@ $(document).ready(() => {
 		// if either of the fields have been left blank, exit function
 		if (!userData.email || !userData.password) return;
 
+		// hide any error alert
+		$("#login-alert").hide();
+
 		// otherwise, run the loginUser function
 		loginUser(userData);
 	});
@@ -21,19 +24,27 @@ $(document).ready(() => {
 			// ajax post to the login api with userData
 			await $.post("/api/login", userData);
 
-			// console.log success
-			console.log("Login success!");
-
-			// if successful, send the user to the posts page
+			// send the user to the posts page
 			window.location.replace("/posts");
 		}
 
 		catch (err) {
-			// console.log error
-			console.log("Login error!");
-
-			// throw the caught error
-			throw err;
+			// display error to user
+			displayError(err);
 		}
+	}
+
+	const displayError = (err) => {
+		// isolate message from err parameter
+		const error = err.responseText;
+		let message;
+
+		// determine message from error
+		if (error.indexOf("Unauthorized") != -1) message = "Invalid email address or password.";
+		else message = "Login Error."
+
+		// display the error to the user
+		$("#login-alert").show();
+		$("#error-message").text(message);
 	}
 });

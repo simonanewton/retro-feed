@@ -1,7 +1,7 @@
 <main>
     <div class="container my-4 d-flex">
 
-        {{!-- Left Sidebar --}}
+        {{!-- left sidebar --}}
         <div class="col-3">
             <div class="p-3 mb-3 text-white rounded d-flex align-items-center sidebar">
                 <i class="fas fa-home"></i>
@@ -12,13 +12,13 @@
             <div class="p-3 mb-3 active rounded d-flex align-items-center sidebar">
                 <i class="fas fa-user"></i>
                 <span class="m-0 px-3">|</span>
-                <a href="" class="link active">Profile</a>
+                <a href="/{{username}}" class="link active">Profile</a>
             </div>
 
             <div class="p-3 mb-3 text-white rounded d-flex align-items-center sidebar">
                 <i class="fas fa-cog"></i>
                 <span class="m-0 px-3">|</span>
-                <a href="" class="link">Settings</a>
+                <a href="/settings" class="link">Settings</a>
             </div>
 
             <div class="p-3 mb-3 text-white rounded d-flex align-items-center sidebar">
@@ -28,9 +28,10 @@
             </div>
         </div>
 
-        {{!-- Main --}}
+        {{!-- main feed --}}
         <div class="col-6 feed-div">
-            {{!-- Search --}}
+
+            {{!-- search --}}
             <div class="mb-3">
                 <form class="border-0 rounded d-flex" id="search-bar">
                     <input type="text" placeholder="Search" class="px-3 py-2 w-100 text-white border-0"
@@ -41,55 +42,46 @@
                 </form>
             </div>
 
-            {{!-- Profile --}}
+            {{!-- profile --}}
             <div class="feed">
-                <div class="mb-3" id="profile-header">
+                <div class="mb-3">
 
-                    {{!-- Profile Images --}}
+                    {{!-- profile images --}}
                     <div>
                         <img class="w-100 rounded" id="profile-bg"
                             src="https://images.unsplash.com/photo-1572617574118-f5f753cef030?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
                             alt="...">
-                        <img class="rounded-circle" id="profile-img"
-                            src="https://img.favpng.com/7/0/0/clip-art-character-silhouette-animal-headgear-png-favpng-Ld0kGhegwYGDWXcP5VTdBp7c9.jpg"
-                            alt="profile picture">
+                        <img class="ml-3 mb-1 rounded-circle" id="profile-img"
+                            src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png" alt="profile picture">
                     </div>
 
-                    {{!-- Bio --}}
+                    {{!-- user bio --}}
                     <div class="mb-3">
                         <h4><b>{{displayName}}</b></h4>
                         <h5>@{{username}}</h5>
                         <hr class="border-dark">
 
                         <i class="fas fa-bullhorn d-inline"></i>
-                        <h6 class="d-inline">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad
-                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat.
+                        <h6 class="d-inline">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </h6>
                     </div>
 
-                    {{!-- Social Links --}}
-                    <div class="mb-3">
-                        <!--Facebook-->
+                    {{!-- social links --}}
+                    <div class="mb-4">
                         <a href="" class="fb-ic mr-3" role="button"><i class="fab fa-lg fa-facebook-f"></i></a>
-                        <!--Twitter-->
                         <a href="" class="tw-ic mr-3" role="button"><i class="fab fa-lg fa-twitter"></i></a>
-                        <!--Linkedin-->
                         <a href="" class="li-ic mr-3" role="button"><i class="fab fa-lg fa-linkedin-in"></i></a>
-                        <!--Instagram-->
                         <a href="" class="ins-ic mr-3" role="button"><i class="fab fa-lg fa-instagram"></i></a>
-                        <!--Youtube-->
                         <a href="" class="yt-ic mr-3" role="button"><i class="fab fa-lg fa-youtube"></i></a>
-                        <!--Github-->
                         <a href="" class="git-ic mr-3" role="button"><i class="fab fa-lg fa-github"></i></a>
-                        <!--Email-->
                         <a href="" class="email-ic mr-3" role="button"><i class="far fa-lg fa-envelope"></i></a>
                     </div>
                 </div>
 
-                {{!-- User Posts --}}
+                {{!-- user posts --}}
                 <div>
                     {{#each posts}}
                     {{> posts/new-post}}
@@ -98,6 +90,34 @@
                         <p class="p-4 m-0">No posts...</p>
                     </div>
                     {{/each}}
+                </div>
+
+                {{!-- new post modal --}}
+                <div class="modal fade" id="new-post-modal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <header class="modal-header text-white">
+                                <h4 class="modal-title d-inline">New Post</h4>
+                                <i class="far fa-edit fa-lg px-3 d-inline align-self-center"></i>
+                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                    <span>&times;</span>
+                                </button>
+                            </header>
+
+                            <div class="modal-body text-white">
+                                <form>
+                                    <label for="post-body">Body</label>
+                                    <textarea name="post-body" cols="30" rows="3"
+                                        class="p-2 mb-3 w-100 border-0 rounded" id="post-body"></textarea>
+                                </form>
+                            </div>
+
+                            <footer class="modal-footer">
+                                <button type="submit" class="btn btn-primary float-right"
+                                    id="submit-post">Submit</button>
+                            </footer>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -115,6 +135,13 @@
                 <span class="m-0 px-3">|</span>
                 <i class="fas fa-address-card"></i>
             </div>
+        </div>
+
+        <div class="p-3 mb-3 text-white rounded d-flex align-items-center justify-content-end sidebar">
+            <button type="button" class="btn p-0 text-white" id="new-post" data-toggle="modal"
+                data-target="#new-post-modal">New Post</button>
+            <span class="m-0 px-3">|</span>
+            <i class="fas fa-plus"></i>
         </div>
 
     </div>

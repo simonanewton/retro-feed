@@ -13,8 +13,9 @@ $(document).ready(() => {
 
 		// if any of the fields have been left blank, exit function
 		if (!newUser.email || !newUser.username || !newUser.displayName || !newUser.password) {
-			$("#alert .msg").text("Email, username, display name, and/or password cannot be blank.");
-			$("#alert").fadeIn(500);
+			$("#signup-alert").show();
+			$("#error-message").text("No fields can be blank.");
+			// $("#alert").fadeIn(500);
 			return;
 		};
 
@@ -27,19 +28,32 @@ $(document).ready(() => {
 			// ajax post to the signup api with newUser
 			await $.post("/api/signup", newUser);
 
-			// console.log success
-			console.log("Signup success!");
+			// hide any error alert
+			$("#signup-alert").hide();
 
-			// if successful, send the user to the posts page
+			// send the user to the posts page
 			window.location.replace("/posts");
 		}
 
 		catch (err) {
-			// console.log error
-			console.log("Signup error!");
-
-			// throw the caught error
-			throw err;
+			// display error to user
+			displayError(err);
 		}
+	}
+
+	const displayError = (err) => {
+		// isolate message from err parameter
+		const error = err.responseJSON.errors[0].message;
+		let message;
+		
+		// determine message from error
+		if (error.indexOf("Validation isEmail") != -1) message = "Invalid email address.";
+		else if (error.indexOf("users.email") != -1) message = "Email already in use.";
+		else if (error.indexOf("users.username") != -1) message = "Username already in use.";
+		else message = "Signup Error."
+
+		// alert the user of the error
+		$("#signup-alert").show();
+		$("#error-message").text(message);
 	}
 });
