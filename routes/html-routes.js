@@ -53,10 +53,7 @@ module.exports = (app) => {
             posts.reverse();
 
             // render the posts.handlebars page with the posts and username
-            res.render("posts", {
-                posts: posts,
-                username: req.user.username
-            });
+            res.render("posts", { posts: posts, username: req.user.username });
         }
 
         catch (err) {
@@ -160,7 +157,7 @@ module.exports = (app) => {
             posts.reverse();
 
             // render the posts.handlebars page with the posts
-            res.render("posts", { posts: posts });
+            res.render("posts", { posts: posts, username: req.user.username });
         }
 
         catch (err) {
