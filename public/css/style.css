@@ -10,6 +10,7 @@ body {
   background-size: cover;
   background-blend-mode: overlay;
   background-color: rgb(171, 169, 169);
+  /* background-position: center; */
 }
 
 body::-webkit-scrollbar {
@@ -41,6 +42,23 @@ footer,
 .btn:focus {
   outline: none;
   box-shadow: none;
+}
+
+/* form styles ------------------------------------- */
+
+.modal-header,
+.modal-footer {
+  border-radius: 3px;
+}
+
+textarea {
+  resize: none;
+  color: #000033;
+}
+
+input[type=text],
+input[type=email] {
+  color: #000033;
 }
 
 /* styling for posts page ------------------------------------- */
@@ -131,20 +149,26 @@ footer,
   background-color: gray;
 }
 
-.profile-bio {
-  background-color: #000033;
-}
-
-.profile-social {
-  color: #ccff99;
-}
-
 .profile-name {
   color: #33ffff;
 }
 
 .profile-username {
   color: #ccff99;
+}
+
+.profile-bio {
+  background-color: #002952;
+}
+
+#bio-button {
+  width: 10rem;
+  border-radius: 15px;
+  color: #33ffff;
+}
+
+.profile-social {
+  color: #000033;
 }
 
 

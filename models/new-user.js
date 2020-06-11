@@ -24,6 +24,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(64),
             allowNull: false,
             is: /^[0-9a-f]{64}$/i
+        },
+        bio: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            unique: false
         }
     });
 
