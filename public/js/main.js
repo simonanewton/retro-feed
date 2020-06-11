@@ -60,12 +60,7 @@ $(document).ready(() => {
     $(".avatarSel").click(async (event) => {
         const user = await $.get("/api/userData");
         const avatar = $(event.target).attr("src");
-        console.log(user.username);
-        console.log(user);
-        console.log(avatar);
         
-
-
         await $.ajax({
             method: "PUT",
             url: "/api/users/" + user.username, 

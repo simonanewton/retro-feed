@@ -12,7 +12,7 @@ module.exports = (app) => {
                 username: req.body.username,
                 displayName: req.body.displayName,
                 password: req.body.password,
-
+                avatar: public/images/avatars/pack1/005-wizard.png
             });
 
             // redirect to post /api/login
