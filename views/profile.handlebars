@@ -29,7 +29,7 @@
         </div>
 
         {{!-- edit bio modal --}}
-        <div class="modal fade" id="user-settings-modal" tabindex="-1">
+        <div class="modal fade" id="user-bio-modal" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <header class="modal-header text-white">
@@ -44,8 +44,7 @@
                         <form class="mb-3 bio-update" id="bio-update-form">
                             <div class="form-group">
                                 <label for="bio-input">Bio</label>
-                                <textarea type="text" rows="5" class="border-0 form-control" id="bio-input"
-                                    value="{{bio}}"></textarea>
+                                <textarea type="text" rows="4" class="border-0 form-control" id="bio-input">{{bio}}</textarea>
                             </div>
                         </form>
                     </div>
@@ -125,13 +124,13 @@
                         {{!-- options: --}}
                         {{!-- 1. you're looking at your own profile - you have a bio or you don't --}}
                         {{#if isUser}}
+                        {{!-- if bio exists, display --}}
                         {{#if bio}}
                         <i class="fas fa-bullhorn d-inline mb-3"></i>
                         <h6 class="d-inline">{{bio}}</h6>
-                        {{else}}
-                        <button type="button" class="btn btn-outline-info btn-sm mb-3" id="bio-button"
-                            data-toggle="modal" data-target="#user-settings-modal">Edit Bio</button>
                         {{/if}}
+                        <button type="button" class="btn btn-outline-info btn-sm my-2" id="bio-button"
+                            data-toggle="modal" data-target="#user-bio-modal">Edit Bio</button>
 
                         {{!-- 2. you're looking at someone else's profile - they have a bio or don't --}}
                         {{else}}

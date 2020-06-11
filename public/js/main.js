@@ -56,6 +56,7 @@ $(document).ready(() => {
         location.reload();
     });
 
+    // user profile functions ------------------------------------- 
     $(".avatarSel").click(async (event) => {
         const user = await $.get("/api/userData");
         const avatar = $(event.target).attr("src");
@@ -73,4 +74,24 @@ $(document).ready(() => {
         // reload the window
         location.reload();
     });
+
+    $("#bio-update").click(async (event) => {
+        event.preventDefault();
+
+        // get current user who is logged in
+        let user = await $.get("/api/userData");
+
+        // send PUT update request with bio as object
+        await $.ajax({
+            method: "PUT",
+            url: "/api/users/" + user.username, 
+            data: { bio: $("#bio-input").val() }
+        });
+
+        console.log("User bio updated");
+
+        // reload the window
+        location.reload();
+    });
+
 });

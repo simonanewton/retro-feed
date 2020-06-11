@@ -1,5 +1,6 @@
 const db = require("../models");
 const passport = require("../config/passport");
+const authenticate = require("../config/authenticate");
 
 module.exports = (app) => {
     // login and signup api -------------------------------------
@@ -158,22 +159,27 @@ module.exports = (app) => {
         }
     });
 
+    // update user api -------------------------------------
     app.put("/api/users/:username", async (req, res) => {
         try {
-            // get user from the database
-            const user = await db.User.update({ avatar: req.body.avatar }, { where: { username: req.params.username } });
+            // update user in database with applicable data
+            // .update returns number of affected rows
+            await db.User.update({
+                avatar: req.body.avatar,
+                bio: req.body.bio
+            }, { where: { username: req.params.username } });
 
-            console.log(user);
-            // send the user to the response
-            res.json(user);
+            // sends success response
+            res.status(200).send("User information updated");
         }
 
         catch (err) {
-            // console.log where the error is coming from
+            // console.log the error and where the error is coming from
             console.log("put /api/users/:username error!");
+            console.log(err);
 
             // send status and error to the response
-            res.status(401).json(err);
+            res.status(404).json(err);
         }
     })
 }
