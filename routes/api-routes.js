@@ -10,7 +10,8 @@ module.exports = (app) => {
                 email: req.body.email,
                 username: req.body.username,
                 displayName: req.body.displayName,
-                password: req.body.password
+                password: req.body.password,
+
             });
 
             // redirect to post /api/login
@@ -162,6 +163,7 @@ module.exports = (app) => {
             // get user from the database
             const user = await db.User.update({ avatar: req.body.avatar }, { where: { username: req.params.username } });
 
+            console.log(user);
             // send the user to the response
             res.json(user);
         }
