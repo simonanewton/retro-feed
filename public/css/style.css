@@ -10,6 +10,7 @@ body {
   background-size: cover;
   background-blend-mode: overlay;
   background-color: rgb(171, 169, 169);
+  /* background-position: center; */
 }
 
 body::-webkit-scrollbar {
