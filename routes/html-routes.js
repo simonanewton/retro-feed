@@ -98,7 +98,8 @@ module.exports = (app) => {
             res.render("profile", {
                 posts: posts,
                 displayName: user.dataValues.displayName,
-                username: user.dataValues.username
+                username: user.dataValues.username,
+                avatar: user.dataValues.avatar
             });
         }
 

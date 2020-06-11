@@ -1,3 +1,5 @@
+// import { text } from "express";
+
 $(document).ready(() => {
     $("#search-button").click(async (event) => {
         // prevent page refresh
@@ -52,5 +54,23 @@ $(document).ready(() => {
 
         // reload the window
         location.reload();
+    });
+
+    $(".avatarSel").click(async (event) => {
+        const user = await $.get("/api/userData");
+        const avatar = $(this).attr("src");
+        console.log(event);
+        console.log(user.username);
+        console.log(user);
+        
+
+
+        await $.ajax({
+            method: "PUT",
+            url: "/api/users/" + user.username, 
+            data: avatar
+        })
+        // reload the window
+        // location.reload();
     });
 });

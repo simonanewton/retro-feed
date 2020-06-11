@@ -156,4 +156,22 @@ module.exports = (app) => {
             res.status(401).json(err);
         }
     });
+
+    app.put("/api/users/:username", async (req, res) => {
+        try {
+            // get user from the database
+            const user = await db.User.update({ avatar: req.body.avatar }, { where: { username: req.params.username } });
+
+            // send the user to the response
+            res.json(user);
+        }
+
+        catch (err) {
+            // console.log where the error is coming from
+            console.log("put /api/users/:username error!");
+
+            // send status and error to the response
+            res.status(401).json(err);
+        }
+    })
 }
