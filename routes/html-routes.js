@@ -71,6 +71,10 @@ module.exports = (app) => {
             // get the given username from the request
             let username = req.params.username;
 
+            // boolean true/false if logged in user is the same as URL
+            // if true, show functionality to edit their bio
+            let isUser = (req.user.username === username);
+
             // create an array of all posts in the database from a specific user
             let posts = await db.Post.findAll({
                 where: {
@@ -99,7 +103,10 @@ module.exports = (app) => {
                 posts: posts,
                 displayName: user.dataValues.displayName,
                 username: user.dataValues.username,
-                avatar: user.dataValues.avatar
+                avatar: user.dataValues.avatar,
+                email: user.dataValues.email,
+                bio: user.dataValues.bio,
+                isUser: isUser
             });
         }
 
@@ -170,5 +177,9 @@ module.exports = (app) => {
             // send status and error to the response
             res.status(401).json(err);
         }
+    });
+
+    app.get("*", authenticate, (req, res) => {
+        res.redirect("/posts");
     });
 }

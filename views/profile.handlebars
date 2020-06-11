@@ -28,6 +28,35 @@
             </div>
         </div>
 
+        {{!-- edit bio modal --}}
+        <div class="modal fade" id="user-settings-modal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <header class="modal-header text-white">
+                        <h4 class="modal-title d-inline">Edit Bio</h4>
+                        <i class="fas fa-user px-3 d-inline align-self-center"></i>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span>&times;</span>
+                        </button>
+                    </header>
+
+                    <div class="modal-body text-white">
+                        <form class="mb-3 bio-update" id="bio-update-form">
+                            <div class="form-group">
+                                <label for="bio-input">Bio</label>
+                                <textarea type="text" rows="5" class="border-0 form-control" id="bio-input"
+                                    value="{{bio}}"></textarea>
+                            </div>
+                        </form>
+                    </div>
+
+                    <footer class="modal-footer">
+                        <button type="submit" class="btn btn-primary float-right" id="bio-update">Save</button>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
         {{!-- main feed --}}
         <div class="col-6 feed-div">
 
@@ -93,23 +122,42 @@
                         <h5 class="profile-username">@{{username}}</h5>
                         <hr class="border-light">
 
+                        {{!-- options: --}}
+                        {{!-- 1. you're looking at your own profile - you have a bio or you don't --}}
+                        {{#if isUser}}
+                        {{#if bio}}
                         <i class="fas fa-bullhorn d-inline mb-3"></i>
-                        <h6 class="d-inline">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </h6>
+                        <h6 class="d-inline">{{bio}}</h6>
+                        {{else}}
+                        <button type="button" class="btn btn-outline-info btn-sm mb-3" id="bio-button"
+                            data-toggle="modal" data-target="#user-settings-modal">Edit Bio</button>
+                        {{/if}}
+
+                        {{!-- 2. you're looking at someone else's profile - they have a bio or don't --}}
+                        {{else}}
+                        {{#if bio}}
+                        <i class="fas fa-bullhorn d-inline mb-3"></i>
+                        <h6 class="d-inline">{{bio}}</h6>
+                        {{/if}}
+                        {{/if}}
                     </div>
 
                     {{!-- social links --}}
                     <div class="m-4">
-                        <a href="" class="fb-ic mr-3" role="button"><i class="fab fa-lg fa-facebook-f profile-social"></i></a>
-                        <a href="" class="tw-ic mr-3" role="button"><i class="fab fa-lg fa-twitter profile-social"></i></a>
-                        <a href="" class="li-ic mr-3" role="button"><i class="fab fa-lg fa-linkedin-in profile-social"></i></a>
-                        <a href="" class="ins-ic mr-3" role="button"><i class="fab fa-lg fa-instagram profile-social"></i></a>
-                        <a href="" class="yt-ic mr-3" role="button"><i class="fab fa-lg fa-youtube profile-social"></i></a>
-                        <a href="" class="git-ic mr-3" role="button"><i class="fab fa-lg fa-github profile-social"></i></a>
-                        <a href="" class="email-ic mr-3" role="button"><i class="far fa-lg fa-envelope profile-social"></i></a>
+                        <a href="" class="fb-ic mr-3" role="button"><i
+                                class="fab fa-lg fa-facebook-f profile-social"></i></a>
+                        <a href="" class="tw-ic mr-3" role="button"><i
+                                class="fab fa-lg fa-twitter profile-social"></i></a>
+                        <a href="" class="li-ic mr-3" role="button"><i
+                                class="fab fa-lg fa-linkedin-in profile-social"></i></a>
+                        <a href="" class="ins-ic mr-3" role="button"><i
+                                class="fab fa-lg fa-instagram profile-social"></i></a>
+                        <a href="" class="yt-ic mr-3" role="button"><i
+                                class="fab fa-lg fa-youtube profile-social"></i></a>
+                        <a href="" class="git-ic mr-3" role="button"><i
+                                class="fab fa-lg fa-github profile-social"></i></a>
+                        <a href="" class="email-ic mr-3" role="button"><i
+                                class="far fa-lg fa-envelope profile-social"></i></a>
                     </div>
                 </div>
 
@@ -168,12 +216,14 @@
                 <i class="fas fa-address-card"></i>
             </div>
 
+            {{#if isUser}}
             <div class="p-3 mb-3 text-white rounded d-flex align-items-center justify-content-end sidebar">
                 <button type="button" class="btn p-0 text-white" id="new-post" data-toggle="modal"
                     data-target="#new-post-modal">New Post</button>
                 <span class="m-0 px-3">|</span>
                 <i class="fas fa-plus"></i>
             </div>
+            {{/if}}
         </div>
 
     </div>
