@@ -165,7 +165,12 @@ module.exports = (app) => {
             // .update returns number of affected rows
             await db.User.update({
                 avatar: req.body.avatar,
-                bio: req.body.bio
+                bio: req.body.bio,
+                facebook: req.body.facebook,
+                twitter: req.body.twitter,
+                linkedin: req.body.linkedin,
+                instagram: req.body.instagram,
+                github: req.body.github
             }, { where: { username: req.params.username } });
 
             // sends success response

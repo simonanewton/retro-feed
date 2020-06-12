@@ -86,9 +86,12 @@ $(document).ready(() => {
             method: "PUT",
             url: "/api/users/" + user.username, 
             data: { 
-                bio: $("#bio-input").val(),
+                bio: $("#bio-input").val().trim(),
                 facebook: $("#facebook-input").val().trim(),
-                twitter: $("#twitter-input").val().trim()
+                twitter: $("#twitter-input").val().trim(),
+                linkedin: $("#linkedin-input").val().trim(),
+                instagram: $("#instagram-input").val().trim(),
+                github: $("#github-input").val().trim()
             }
         });
 

@@ -110,22 +110,41 @@
                                         <div class="form-group">
                                             <label for="bio-input">Bio</label>
                                             <textarea type="text" rows="4" class="border-0 form-control"
-                                                id="bio-input">{{bio}}</textarea>
+                                                id="bio-input" placeholder="Add your bio">{{bio}}</textarea>
                                         </div>
 
                                         <hr class="border-light mt-4">
 
                                         <div class="form-group">
                                             <label for="bio-input">Facebook</label>
-                                            <input type="text" class="border-0 form-control"
-                                                id="facebook-input">{{facebook}}</input>
+                                            <input type="text" class="border-0 form-control" id="facebook-input" placeholder="Add your Facebook profile"
+                                                value="{{facebook}}"></input>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="bio-input">Twitter</label>
-                                            <input type="text" class="border-0 form-control"
-                                                id="twitter-input">{{twitter}}</input>
+                                            <label for="twitter-input">Twitter</label>
+                                            <input type="text" class="border-0 form-control" id="twitter-input" placeholder="Add your Twitter profile"
+                                                value="{{twitter}}"></input>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label for="linkedin-input">LinkedIn</label>
+                                            <input type="text" class="border-0 form-control" id="linkedin-input" placeholder="Add your LinkedIn profile"
+                                                value="{{linkedin}}"></input>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="instagram-input">Instagram</label>
+                                            <input type="text" class="border-0 form-control" id="instagram-input" placeholder="Add your Instagram"
+                                                value="{{instagram}}"></input>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="github-input">GitHub</label>
+                                            <input type="text" class="border-0 form-control" id="github-input" placeholder="Add your GitHub"
+                                                value="{{github}}"></input>
+                                        </div>
+
                                     </form>
                                 </div>
 
@@ -166,23 +185,25 @@
                     {{!-- social links --}}
                     <div class="m-4">
                         {{#if facebook}}
-                        <a href="{{facebook}}" class="fb-ic mr-3" role="button"><i
+                        <a href="{{facebook}}" target="_blank" class="fb-ic mr-3"><i
                                 class="fab fa-lg fa-facebook-f profile-social"></i></a>
                         {{/if}}
                         {{#if twitter}}
-                        <a href="{{twitter}}" class="tw-ic mr-3" role="button"><i
+                        <a href="{{twitter}}" target="_blank" class="tw-ic mr-3"><i
                                 class="fab fa-lg fa-twitter profile-social"></i></a>
                         {{/if}}
-                        <a href="" class="li-ic mr-3" role="button"><i
+                        {{#if linkedin}}
+                        <a href="{{linkedin}}" target="_blank" class="li-ic mr-3"><i
                                 class="fab fa-lg fa-linkedin-in profile-social"></i></a>
-                        <a href="" class="ins-ic mr-3" role="button"><i
+                        {{/if}}
+                        {{#if instagram}}
+                        <a href="{{instagram}}" target="_blank" class="ins-ic mr-3"><i
                                 class="fab fa-lg fa-instagram profile-social"></i></a>
-                        <a href="" class="yt-ic mr-3" role="button"><i
-                                class="fab fa-lg fa-youtube profile-social"></i></a>
-                        <a href="" class="git-ic mr-3" role="button"><i
+                        {{/if}}
+                        {{#if github}}
+                        <a href="{{github}}" target="_blank" class="git-ic mr-3"><i
                                 class="fab fa-lg fa-github profile-social"></i></a>
-                        <a href="" class="email-ic mr-3" role="button"><i
-                                class="far fa-lg fa-envelope profile-social"></i></a>
+                        {{/if}}
                     </div>
                 </div>
 

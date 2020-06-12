@@ -33,6 +33,31 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true,
             unique: false
+        },
+        facebook: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            unique: false
+        },
+        twitter: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            unique: false
+        },
+        linkedin: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            unique: false
+        },
+        instagram: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            unique: false
+        },
+        github: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            unique: false
         }
     });
 

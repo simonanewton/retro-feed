@@ -106,6 +106,11 @@ module.exports = (app) => {
                 avatar: user.dataValues.avatar,
                 email: user.dataValues.email,
                 bio: user.dataValues.bio,
+                facebook: user.dataValues.facebook,
+                twitter: user.dataValues.twitter,
+                linkedin: user.dataValues.linkedin,
+                instagram: user.dataValues.instagram,
+                github: user.dataValues.github,
                 isUser: isUser
             });
         }
