@@ -75,7 +75,7 @@ $(document).ready(() => {
         location.reload();
     });
 
-    $("#bio-update").click(async (event) => {
+    $("#profile-update").click(async (event) => {
         event.preventDefault();
 
         // get current user who is logged in
@@ -85,10 +85,14 @@ $(document).ready(() => {
         await $.ajax({
             method: "PUT",
             url: "/api/users/" + user.username, 
-            data: { bio: $("#bio-input").val() }
+            data: { 
+                bio: $("#bio-input").val(),
+                facebook: $("#facebook-input").val().trim(),
+                twitter: $("#twitter-input").val().trim()
+            }
         });
 
-        console.log("User bio updated");
+        console.log("User profile updated");
 
         // reload the window
         location.reload();
