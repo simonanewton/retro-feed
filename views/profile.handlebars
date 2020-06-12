@@ -28,34 +28,6 @@
             </div>
         </div>
 
-        {{!-- edit bio modal --}}
-        <div class="modal fade" id="user-bio-modal" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <header class="modal-header text-white">
-                        <h4 class="modal-title d-inline">Edit Bio</h4>
-                        <i class="fas fa-user px-3 d-inline align-self-center"></i>
-                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                            <span>&times;</span>
-                        </button>
-                    </header>
-
-                    <div class="modal-body text-white">
-                        <form class="mb-3 bio-update" id="bio-update-form">
-                            <div class="form-group">
-                                <label for="bio-input">Bio</label>
-                                <textarea type="text" rows="4" class="border-0 form-control" id="bio-input">{{bio}}</textarea>
-                            </div>
-                        </form>
-                    </div>
-
-                    <footer class="modal-footer">
-                        <button type="submit" class="btn btn-primary float-right" id="bio-update">Save</button>
-                    </footer>
-                </div>
-            </div>
-        </div>
-
         {{!-- main feed --}}
         <div class="col-6 feed-div">
 
@@ -74,7 +46,7 @@
             <div class="feed">
                 <div class="mb-3">
 
-                    {{!-- profil pic modal --}}
+                    {{!-- profile pic modal --}}
                     <div class="modal fade" id="new-profilePic-modal" tabindex="-1">
                         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
@@ -87,19 +59,25 @@
                                 </header>
 
                                 <div class="modal-body text-center text-white">
-                                    <img class="ml-3 mb-1 rounded-circle avatarSel" 
-                                        src="https://img.icons8.com/ios-filled/100/000000/retro-robot.png" alt="profile picture">
                                     <img class="ml-3 mb-1 rounded-circle avatarSel"
-                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png" alt="profile picture">
+                                        src="https://img.icons8.com/ios-filled/100/000000/retro-robot.png"
+                                        alt="profile picture">
+                                    <img class="ml-3 mb-1 rounded-circle avatarSel"
+                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png"
+                                        alt="profile picture">
                                     <img class="ml-3 mb-1 rounded-circle" id="avatarSel"
-                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png" alt="profile picture">
+                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png"
+                                        alt="profile picture">
                                     <img class="ml-3 mb-1 rounded-circle" id="avatarSel"
-                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png" alt="profile picture">
+                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png"
+                                        alt="profile picture">
                                     <img class="ml-3 mb-1 rounded-circle" id="avatarSel"
-                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png" alt="profile picture">
+                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png"
+                                        alt="profile picture">
                                     <img class="ml-3 mb-1 rounded-circle" id="avatarSel"
-                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png" alt="profile picture">
-                                    
+                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png"
+                                        alt="profile picture">
+
                                 </div>
                             </div>
                         </div>
@@ -110,9 +88,53 @@
                         <img class="w-100 rounded" id="profile-bg"
                             src="https://images.unsplash.com/photo-1572617574118-f5f753cef030?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
                             alt="...">
-                        <img class="ml-3 mb-1 rounded-circle" id="profile-img"
-                            src="{{avatar}}" alt="profile picture"
+                        <img class="ml-3 mb-1 rounded-circle" id="profile-img" src="{{avatar}}" alt="profile picture"
                             data-toggle="modal" data-target="#new-profilePic-modal">
+                    </div>
+
+                    {{!-- edit profile modal --}}
+                    <div class="modal fade" id="user-profile-modal" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <header class="modal-header text-white">
+                                    <h4 class="modal-title d-inline">Edit Bio</h4>
+                                    <i class="fas fa-user px-3 d-inline align-self-center"></i>
+                                    <button type="button" class="close text-white" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span>&times;</span>
+                                    </button>
+                                </header>
+
+                                <div class="modal-body text-white">
+                                    <form class="mb-3 bio-update" id="bio-update-form">
+                                        <div class="form-group">
+                                            <label for="bio-input">Bio</label>
+                                            <textarea type="text" rows="4" class="border-0 form-control"
+                                                id="bio-input">{{bio}}</textarea>
+                                        </div>
+
+                                        <hr class="border-light mt-4">
+
+                                        <div class="form-group">
+                                            <label for="bio-input">Facebook</label>
+                                            <input type="text" class="border-0 form-control"
+                                                id="facebook-input">{{facebook}}</input>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="bio-input">Twitter</label>
+                                            <input type="text" class="border-0 form-control"
+                                                id="twitter-input">{{twitter}}</input>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <footer class="modal-footer">
+                                    <button type="submit" class="btn btn-primary float-right"
+                                        id="profile-update">Save</button>
+                                </footer>
+                            </div>
+                        </div>
                     </div>
 
                     {{!-- user bio --}}
@@ -127,26 +149,30 @@
                         {{!-- if bio exists, display --}}
                         {{#if bio}}
                         <i class="fas fa-bullhorn d-inline mb-3"></i>
-                        <h6 class="d-inline">{{bio}}</h6>
+                        <h6 class="d-inline my-3">{{bio}}</h6>
                         {{/if}}
-                        <button type="button" class="btn btn-outline-info btn-sm my-2" id="bio-button"
-                            data-toggle="modal" data-target="#user-bio-modal">Edit Bio</button>
+                        <button type="button" class="btn btn-outline-info btn-sm mt-3 mb-2" id="profile-button"
+                            data-toggle="modal" data-target="#user-profile-modal">Edit profile</button>
 
                         {{!-- 2. you're looking at someone else's profile - they have a bio or don't --}}
                         {{else}}
                         {{#if bio}}
                         <i class="fas fa-bullhorn d-inline mb-3"></i>
-                        <h6 class="d-inline">{{bio}}</h6>
+                        <h6 class="d-inline my-3">{{bio}}</h6>
                         {{/if}}
                         {{/if}}
                     </div>
 
                     {{!-- social links --}}
                     <div class="m-4">
-                        <a href="" class="fb-ic mr-3" role="button"><i
+                        {{#if facebook}}
+                        <a href="{{facebook}}" class="fb-ic mr-3" role="button"><i
                                 class="fab fa-lg fa-facebook-f profile-social"></i></a>
-                        <a href="" class="tw-ic mr-3" role="button"><i
+                        {{/if}}
+                        {{#if twitter}}
+                        <a href="{{twitter}}" class="tw-ic mr-3" role="button"><i
                                 class="fab fa-lg fa-twitter profile-social"></i></a>
+                        {{/if}}
                         <a href="" class="li-ic mr-3" role="button"><i
                                 class="fab fa-lg fa-linkedin-in profile-social"></i></a>
                         <a href="" class="ins-ic mr-3" role="button"><i

@@ -177,9 +177,9 @@ input[type=email] {
   background-color: #002952;
 }
 
-#bio-button {
-  width: 10rem;
-  border-radius: 15px;
+#profile-button {
+  width: 9rem;
+  border-radius: 12px;
   color: #33ffff;
 }
 
