@@ -10,7 +10,6 @@ body {
   background-size: cover;
   background-blend-mode: overlay;
   background-color: rgb(171, 169, 169);
-  /* background-position: center; */
 }
 
 body::-webkit-scrollbar {
@@ -21,6 +20,7 @@ body::-webkit-scrollbar {
   height: 100%;
 }
 
+.navbar,
 header,
 footer,
 .sidebar,
@@ -40,7 +40,23 @@ footer,
   box-shadow: none;
 }
 
-/* form styles ------------------------------------- */
+/* styling for navbar ------------------------------------- */
+
+.navbar {
+  height: 6rem;
+}
+
+.navbar-text {
+  font-size: 2rem;
+}
+
+.navbar-brand {
+  position: absolute;
+  left: 48vw;
+  top: 0.8rem;
+}
+
+/* styling for forms ------------------------------------- */
 
 .modal-header,
 .modal-body,
