@@ -179,6 +179,12 @@ module.exports = (app) => {
         }
     });
 
+    // settings ------------------------------------- 
+    app.get("/settings", authenticate, async (req, res) => {
+        res.render("settings", { user: req.user });
+    });
+
+    // default ------------------------------------- 
     app.get("*", authenticate, (req, res) => {
         res.redirect("/posts");
     });

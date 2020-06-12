@@ -1,0 +1,124 @@
+<main>
+    <div class="container mt-4 d-flex">
+
+        {{!-- left sidebar --}}
+        <div class="col-3">
+            <div class="p-3 mb-3 rounded d-flex align-items-center sidebar active">
+                <i class="fas fa-home"></i>
+                <span class="m-0 px-3">|</span>
+                <a href="/" class="link active">Home</a>
+            </div>
+
+            <div class="p-3 mb-3 text-white rounded d-flex align-items-center sidebar">
+                <i class="fas fa-user"></i>
+                <span class="m-0 px-3">|</span>
+                <a href="/users/{{user.username}}" class="link">Profile</a>
+            </div>
+
+            <div class="p-3 mb-3 text-white rounded d-flex align-items-center sidebar">
+                <i class="fas fa-cog"></i>
+                <span class="m-0 px-3">|</span>
+                <a href="/settings" class="link">Settings</a>
+            </div>
+
+            <div class="p-3 mb-3 text-white rounded d-flex align-items-center sidebar">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="m-0 px-3">|</span>
+                <a href="/logout" class="link">Logout</a>
+            </div>
+        </div>
+
+        {{!-- settings --}}
+        <div class="col-6" id="settings-div">
+
+            <form id="settings-form">
+                <div class="p-4 mb-3 rounded d-flex align-items-center justify-content-between setting">
+                    <label for="current-email" class="pr-2 m-0 w-100 text-wrap">Change Email Address</label>
+                    <input type="email" name="current-email" placeholder="Email Address" spellcheck="false"
+                        class="p-2 w-100 border-0 rounded" id="current-email">
+                </div>
+
+                <div class="p-4 mb-3 rounded d-flex align-items-center justify-content-between setting">
+                    <label for="current-username" class="pr-2 m-0 w-100 text-wrap">Change Username</label>
+                    <input type="text" name="current-email" placeholder="Username" spellcheck="false"
+                        class="p-2 w-100 border-0 rounded" id="current-username">
+                </div>
+
+                <div class="p-4 mb-3 rounded d-flex align-items-center justify-content-between setting">
+                    <label for="current-displayName" class="pr-2 m-0 w-100 text-wrap">Change Display Name</label>
+                    <input type="text" name="current-display-name" placeholder="Display Name" spellcheck="false"
+                        class="p-2 w-100 border-0 rounded" id="current-displayName">
+                </div>
+
+                <div class="p-4 mb-3 rounded d-flex align-items-center justify-content-between setting">
+                    <label for="current-password" class="pr-2 m-0 w-100 text-wrap">Change Password</label>
+                    <input type="password" name="current-password" class="p-2 w-100 border-0 rounded"
+                        id="current-password">
+                </div>
+
+                <div class="p-4 mb-3 rounded d-flex align-items-center justify-content-between setting">
+                    <label for="save-changes" class="pr-2 m-0 w-100 text-wrap">Save Changes</label>
+                    <button type="submit" class="btn btn-primary text-nowrap" id="save-settings">
+                        <span class="pr-2">Save</span>
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
+            </form>
+
+            <div class="alert alert-success align-items-center" id="success-alert" role="alert">
+                <i class="fas fa-check-circle pr-2"></i>
+                <span>Settings have been saved!</span>
+            </div>
+
+            <div class="alert alert-danger align-items-center" id="error-alert" role="alert">
+                <i class="fas fa-times-circle pr-2"></i>
+                <span id="error-message"></span>
+            </div>
+
+            <hr class="border-white">
+
+            <div class="p-4 mb-3 rounded d-flex align-items-center justify-content-between setting">
+                <h6 class="m-0">Delete Account</h6>
+                <button type="button" class="btn btn-danger text-nowrap" data-toggle="modal"
+                    data-target="#delete-account-modal">
+                    <span class="pr-2">Delete</span>
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+
+                <div class="modal fade" id="delete-account-modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body d-flex text-white align-items-center justify-content-between">
+                                <span>Are you sure?</span>
+                                <button type="button" class="btn btn-danger text-nowrap" id="delete-account">
+                                    <span class="pr-2">Delete Account</span>
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        {{!-- right sidebar --}}
+        <div class="col-3">
+            <div class="p-3 mb-3 text-white rounded d-flex align-items-center justify-content-end sidebar">
+                <a href="/users" class="link">All Users</a>
+                <span class="m-0 px-3">|</span>
+                <i class="fas fa-users"></i>
+            </div>
+
+            <div class="p-3 mb-3 text-white rounded d-flex align-items-center justify-content-end sidebar">
+                <a href="/all-post" class="link">All Posts</a>
+                <span class="m-0 px-3">|</span>
+                <i class="fas fa-address-card"></i>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery.js"></script>
+<script language="JavaScript" type="text/javascript" src="./js/settings.js"></script>

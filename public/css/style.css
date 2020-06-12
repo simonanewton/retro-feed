@@ -1,5 +1,5 @@
 /* global styles ------------------------------------- */
-html, body {
+html, body, main {
   height: 100vh;
 }
 
@@ -15,10 +15,6 @@ body {
 
 body::-webkit-scrollbar {
   display: none;
-}
-
-main {
-  height: 79%;
 }
 
 .container {
@@ -47,6 +43,7 @@ footer,
 /* form styles ------------------------------------- */
 
 .modal-header,
+.modal-body,
 .modal-footer {
   border-radius: 3px;
 }
@@ -100,11 +97,12 @@ input[type=email] {
   outline: none;
 }
 
-.feed-div, .feed {
-  height: 100%;
+.feed-div {
+  height: 79%;
 }
 
 .feed {
+  height: 100%;
   overflow-y: auto;
   border-radius: .25rem;
 }
@@ -202,4 +200,31 @@ body {
 .signup-bg {
   color: #333366;
   font-size: 0.75rem;
+}
+
+/* styling for settings ------------------------------------- */
+
+#settings-div {
+  height: 86%;
+  overflow-y: auto;
+  border-radius: .25rem;
+}
+
+#settings-div::-webkit-scrollbar {
+  display: none;
+}
+
+.setting {
+  color: white;
+  background-color: #333366;;
+}
+
+.setting input {
+  outline: none;
+  box-shadow: none;
+}
+
+#success-alert,
+#error-alert {
+  display: none;
 }

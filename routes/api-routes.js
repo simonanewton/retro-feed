@@ -159,7 +159,6 @@ module.exports = (app) => {
         }
     });
 
-    // update user api -------------------------------------
     app.put("/api/users/:username", async (req, res) => {
         try {
             // update user in database with applicable data
@@ -181,5 +180,34 @@ module.exports = (app) => {
             // send status and error to the response
             res.status(404).json(err);
         }
-    })
+    });
+
+    // settings api -------------------------------------
+    app.put("/api/settings", async (req, res) => {
+        try {
+
+        }
+
+        catch (err) {
+            // console.log where the error is coming from
+            console.log("put /api/settings error!");
+
+            // send status and error to the response
+            res.status(401).json(err);
+        }
+    });
+
+    app.delete("/api/settings", async (req, res) => {
+        try {
+
+        }
+
+        catch (err) {
+            // console.log where the error is coming from
+            console.log("delete /api/settings error!");
+
+            // send status and error to the response
+            res.status(401).json(err);
+        }
+    });
 }
