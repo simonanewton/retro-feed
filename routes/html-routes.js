@@ -41,7 +41,11 @@ module.exports = (app) => {
     app.get("/posts", authenticate, async (req, res) => {
         try {
             // create an array of all posts in the database
-            let posts = await db.Post.findAll({});
+            let posts = await db.Post.findAll({
+                include: [{
+                    model: db.User
+                }]
+            });
 
             // isolate the post data from the array
             posts = posts.map(post => post.dataValues);
@@ -77,9 +81,12 @@ module.exports = (app) => {
 
             // create an array of all posts in the database from a specific user
             let posts = await db.Post.findAll({
-                where: {
-                    username: username
-                }
+                include: [{
+                    model: db.User,
+                    where: {
+                        username: username
+                    }
+                }]
             });
 
             // isolate the post data from the array
@@ -92,11 +99,7 @@ module.exports = (app) => {
             posts.reverse();
 
             // get the data for the specific user
-            let user = await db.User.findOne({
-                where: {
-                    username: username
-                }
-            });
+            let user = await db.User.findOne({ where: { username: username } });
 
             // render the posts.handlebars page with posts and user info
             res.render("profile", {
@@ -127,8 +130,12 @@ module.exports = (app) => {
     app.get("/all-post", async (req, res) => {
         try {
             // create an array of all posts in the database
-            let posts = await db.Post.findAll({});
-
+            let posts = await db.Post.findAll({
+                include: [{
+                    model: db.User
+                }]
+            });
+            
             // isolate the post data from the array
             posts = posts.map(post => post.dataValues);
 
@@ -152,13 +159,22 @@ module.exports = (app) => {
     });
 
     // search results ------------------------------------- 
-    app.get("/posts/:search", async (req, res) => {
+    app.get("/posts/search/:term", async (req, res) => {
         try {
             // replace search string separators with spaces
-            const search = (req.params.search).replace(/\+/g, ' ');
+            const term = (req.params.search).replace(/\+/g, ' ');
 
             // create an array of all posts in the database where body includes search
-            let posts = await db.Post.findAll({ where: { body: { [Sequelize.Op.like]: "%" + search + "%" } } });
+            let posts = await db.Post.findAll({
+                include: [{
+                    model: db.User
+                }],
+                where: {
+                    body: {
+                        [Sequelize.Op.like]: "%" + term + "%"
+                    }
+                }
+            });
 
             // isolate the post data from the array
             posts = posts.map(post => post.dataValues);
@@ -176,8 +192,6 @@ module.exports = (app) => {
         catch (err) {
             // console.log where the error is coming from
             console.log("/posts/:search error!");
-
-            console.log(err);
 
             // send status and error to the response
             res.status(401).json(err);

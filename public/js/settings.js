@@ -42,9 +42,8 @@ $(document).ready(() => {
         try {
             // send delete request to the settings api
             await $.ajax({
-                method: "PUT",
+                method: "DELETE",
                 url: "/api/settings",
-                data: settings
             });
 
             // send the user to the login page
