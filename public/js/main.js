@@ -1,5 +1,3 @@
-// import { text } from "express";
-
 $(document).ready(() => {
     $("#search-button").click(async (event) => {
         // prevent page refresh
