@@ -85,11 +85,20 @@
 
                     {{!-- profile images --}}
                     <div>
+                        {{!-- banner image--}}
                         <img class="w-100 rounded" id="profile-bg"
                             src="https://images.unsplash.com/photo-1572617574118-f5f753cef030?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
                             alt="...">
-                        <img class="ml-3 mb-1 rounded-circle" id="profile-img" src="{{avatar}}" alt="profile picture"
+
+                        {{!-- profile image --}}
+                        {{!-- if User is logged in, allow edit --}}
+                        {{#if isUser}}
+                        <img class="ml-3 mb-1 rounded-circle profile-img" src="./images/avatars/pack1/{{avatar}}" alt="{{username}} profile picture"
                             data-toggle="modal" data-target="#new-profilePic-modal">
+                        {{!-- otherwise, simply display profile if viewing other profile --}}
+                        {{else}}
+                        <img class="ml-3 mb-1 rounded-circle profile-img" src="./images/avatars/pack1/{{avatar}}" alt="{{username}} profile picture">
+                        {{/if}}
                     </div>
 
                     {{!-- edit profile modal --}}
@@ -109,40 +118,40 @@
                                     <form class="mb-3 bio-update" id="bio-update-form">
                                         <div class="form-group">
                                             <label for="bio-input">Bio</label>
-                                            <textarea type="text" rows="4" class="border-0 form-control"
-                                                id="bio-input" placeholder="Add your bio">{{bio}}</textarea>
+                                            <textarea type="text" rows="4" class="border-0 form-control" id="bio-input"
+                                                placeholder="Add your bio">{{bio}}</textarea>
                                         </div>
 
                                         <hr class="border-light mt-4">
 
                                         <div class="form-group">
                                             <label for="bio-input">Facebook</label>
-                                            <input type="text" class="border-0 form-control" id="facebook-input" placeholder="Add your Facebook profile"
-                                                value="{{facebook}}"></input>
+                                            <input type="text" class="border-0 form-control" id="facebook-input"
+                                                placeholder="Add your Facebook profile" value="{{facebook}}"></input>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="twitter-input">Twitter</label>
-                                            <input type="text" class="border-0 form-control" id="twitter-input" placeholder="Add your Twitter profile"
-                                                value="{{twitter}}"></input>
+                                            <input type="text" class="border-0 form-control" id="twitter-input"
+                                                placeholder="Add your Twitter profile" value="{{twitter}}"></input>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="linkedin-input">LinkedIn</label>
-                                            <input type="text" class="border-0 form-control" id="linkedin-input" placeholder="Add your LinkedIn profile"
-                                                value="{{linkedin}}"></input>
+                                            <input type="text" class="border-0 form-control" id="linkedin-input"
+                                                placeholder="Add your LinkedIn profile" value="{{linkedin}}"></input>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="instagram-input">Instagram</label>
-                                            <input type="text" class="border-0 form-control" id="instagram-input" placeholder="Add your Instagram"
-                                                value="{{instagram}}"></input>
+                                            <input type="text" class="border-0 form-control" id="instagram-input"
+                                                placeholder="Add your Instagram" value="{{instagram}}"></input>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="github-input">GitHub</label>
-                                            <input type="text" class="border-0 form-control" id="github-input" placeholder="Add your GitHub"
-                                                value="{{github}}"></input>
+                                            <input type="text" class="border-0 form-control" id="github-input"
+                                                placeholder="Add your GitHub" value="{{github}}"></input>
                                         </div>
 
                                     </form>
@@ -168,7 +177,7 @@
                         {{!-- if bio exists, display --}}
                         {{#if bio}}
                         <i class="fas fa-bullhorn d-inline mb-3"></i>
-                        <h6 class="d-inline my-3">{{bio}}</h6>
+                        <h6 class="d-inline mb-3">{{bio}}</h6>
                         {{/if}}
                         <button type="button" class="btn btn-outline-info btn-sm mt-3 mb-2" id="profile-button"
                             data-toggle="modal" data-target="#user-profile-modal">Edit profile</button>
@@ -177,7 +186,7 @@
                         {{else}}
                         {{#if bio}}
                         <i class="fas fa-bullhorn d-inline mb-3"></i>
-                        <h6 class="d-inline my-3">{{bio}}</h6>
+                        <h6 class="d-inline mb-3">{{bio}}</h6>
                         {{/if}}
                         {{/if}}
                     </div>

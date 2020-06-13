@@ -1,4 +1,10 @@
 const bcrypt = require("bcryptjs");
+const fs = require('fs');
+
+// create array of files in avatar folder
+const avatarFolder = './public/images/avatars/pack1';
+avatars = fs.readdirSync(avatarFolder);
+console.log(avatars);
 
 module.exports = (sequelize, DataTypes) => {
     // Create User database with email, username, and password
@@ -27,7 +33,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         avatar: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: true,
+            defaultValue: avatars[Math.floor(Math.random()*avatars.length)] // choose random avatar
         },
         bio: {
             type: DataTypes.STRING,
