@@ -1,0 +1,48 @@
+<div class="card p-4 mb-3 border-0 rounded">
+    <div class="d-flex justify-content-between">
+        <div class="pb-2 d-flex align-items-center">
+            <div class="pr-3">
+                <img class="profile-pic rounded-circle" src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png">
+            </div>
+
+            <div>
+                <h4 class="mb-1 profile-name"><b>{{displayName}}</b></h4>
+                <span class="mb-1 d-inline-block">@<a href="/users/{{username}}"
+                        class="mb-1 link">{{username}}</a></span>
+                <div class="d-flex align-items-center">
+                    {{#if facebook}}
+                    <a href="{{facebook}}" target="_blank" class="fb-ic mr-3"><i
+                            class="fab fa-facebook-f profile-social"></i></a>
+                    {{/if}}
+                    {{#if twitter}}
+                    <a href="{{twitter}}" target="_blank" class="tw-ic mr-3"><i
+                            class="fab fa-twitter profile-social"></i></a>
+                    {{/if}}
+                    {{#if linkedin}}
+                    <a href="{{linkedin}}" target="_blank" class="li-ic mr-3"><i
+                            class="fab fa-linkedin-in profile-social"></i></a>
+                    {{/if}}
+                    {{#if instagram}}
+                    <a href="{{instagram}}" target="_blank" class="ins-ic mr-3"><i
+                            class="fab fa-instagram profile-social"></i></a>
+                    {{/if}}
+                    {{#if github}}
+                    <a href="{{github}}" target="_blank" class="git-ic mr-3"><i
+                            class="fab fa-github profile-social"></i></a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex align-items-start">
+            <button type="button" class="btn btn-primary d-flex align-items-center follow">
+                <span>Follow</span>
+                <i class="fas fa-plus pl-2"></i>
+            </button>
+        </div>
+    </div>
+
+    <hr class="mt-2 mb-3 border-white">
+
+    <p class="m-0">{{bio}}</p>
+</div>

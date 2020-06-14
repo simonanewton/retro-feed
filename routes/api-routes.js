@@ -97,17 +97,6 @@ module.exports = (app) => {
         }
     });
 
-    // app.get("/api/all-post", async (req, res) => {
-    //     // create an array of all posts in the database
-    //     const posts = await db.Post.findAll({});
-    //     // db.Post.findAll({ include: [db.UserId] })
-    //     // ((dbPost) => {
-    //     //     res.json(dbPost);
-    //     //   });
-    //     // send the array of posts to the response
-    //     // res.json(posts);
-    // });
-
     // user information api -----------------------------------------------------------
     app.get("/api/userData", authenticate, async (req, res) => {
         // if the user is not logged in, send an empty object
