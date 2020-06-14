@@ -1,3 +1,4 @@
+const fs = require('fs');
 const db = require("../models");
 const passport = require("../config/passport");
 const authenticate = require("../config/authenticate");
@@ -6,12 +7,21 @@ module.exports = (app) => {
     // login and signup api ---------------------------------------------------
     app.post("/api/signup", async (req, res) => {
         try {
+
+            // create array of files in avatar folder and select random file
+            const selectAvatar = () => {
+                const avatarFolder = './public/images/avatars/pack1';
+                avatars = fs.readdirSync(avatarFolder);
+                return avatars[Math.floor(Math.random() * avatars.length)];
+            }
+
             // create an array of all users in the database
             await db.User.create({
                 email: req.body.email,
                 username: req.body.username,
                 displayName: req.body.displayName,
                 password: req.body.password,
+                avatar: selectAvatar()
             });
 
             // redirect to post /api/login
