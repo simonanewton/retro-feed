@@ -13,7 +13,7 @@ $(document).ready(() => {
         search = search.replace(/ /g, "+");
 
         // redirect user to page with search input results
-        window.location.assign("/posts/search/" + search);
+        window.location.assign("/feed/search/" + search);
     });
 
     $("#submit-post").click(async (event) => {

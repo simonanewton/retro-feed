@@ -32,7 +32,7 @@ $(document).ready(() => {
 			$("#signup-alert").hide();
 
 			// send the user to the posts page
-			window.location.replace("/posts");
+			window.location.replace("/feed");
 		}
 
 		catch (err) {
