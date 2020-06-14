@@ -4,7 +4,7 @@ const fs = require('fs');
 // create array of files in avatar folder
 const avatarFolder = './public/images/avatars/pack1';
 avatars = fs.readdirSync(avatarFolder);
-console.log(avatars);
+// console.log(avatars);
 
 module.exports = (sequelize, DataTypes) => {
     // Create User database with email, username, and password

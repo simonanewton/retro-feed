@@ -22,6 +22,8 @@ module.exports = (app) => {
             // console.log where the error is coming from
             console.log("post /api/signup error!");
 
+            console.log(err);
+
             // send status and error to the response
             res.status(401).json(err);
         }
@@ -50,6 +52,8 @@ module.exports = (app) => {
             // console.log where the error is coming from
             console.log("get /api/posts error!");
 
+            console.log(err);
+
             // send status and error to the response
             res.status(401).json(err);
         }
@@ -71,6 +75,8 @@ module.exports = (app) => {
             // console.log where the error is coming from
             console.log("post /api/posts error!");
 
+            console.log(err);
+
             // send status and error to the response
             res.status(401).json(err);
         }
@@ -91,6 +97,8 @@ module.exports = (app) => {
         catch (err) {
             // console.log where the error is coming from
             console.log("delete /api/posts/:id error!");
+
+            console.log(err);
 
             // send status and error to the response
             res.status(401).json(err);
@@ -125,6 +133,8 @@ module.exports = (app) => {
         catch (err) {
             // console.log where the error is coming from
             console.log("get /api/users error!");
+
+            console.log(err);
 
             // send status and error to the response
             res.status(401).json(err);
@@ -190,6 +200,8 @@ module.exports = (app) => {
             // console.log where the error is coming from
             console.log("put /api/settings error!");
 
+            console.log(err);
+
             // send status and error to the response
             res.status(401).json(err);
         }
@@ -213,6 +225,8 @@ module.exports = (app) => {
         catch (err) {
             // console.log where the error is coming from
             console.log("delete /api/settings error!");
+
+            console.log(err);
 
             // send status and error to the response
             res.status(401).json(err);

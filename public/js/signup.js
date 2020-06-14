@@ -50,7 +50,10 @@ $(document).ready(() => {
 		if (error.indexOf("Validation isEmail") != -1) message = "Invalid email address.";
 		else if (error.indexOf("users.email") != -1) message = "Email already in use.";
 		else if (error.indexOf("users.username") != -1) message = "Username already in use.";
-		else message = "Signup Error."
+		else {
+			console.log(error);
+			message = "Signup Error."
+		}
 
 		// alert the user of the error
 		$("#signup-alert").show();
