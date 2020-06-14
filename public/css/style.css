@@ -163,6 +163,10 @@ input[type=email] {
   background-color: gray;
 }
 
+.avatarSel {
+  height: 8.5rem;
+}
+
 .profile-name {
   color: #33ffff;
 }

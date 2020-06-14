@@ -1,5 +1,6 @@
 const moment = require("moment");
 const Sequelize = require("sequelize");
+const fs = require('fs');
 const db = require("../models");
 const authenticate = require("../config/authenticate");
 
@@ -161,6 +162,10 @@ module.exports = (app) => {
 
             // get the data for the specific user
             let user = await db.User.findOne({ where: { username: username } });
+            
+            // return array of files in avatar folder 
+            let avatarFolder = './public/images/avatars/pack1';
+            let avatarArray = fs.readdirSync(avatarFolder);
 
             // render the posts.handlebars page with posts and user info
             res.render("profile", {
@@ -175,7 +180,8 @@ module.exports = (app) => {
                 linkedin: user.linkedin,
                 instagram: user.instagram,
                 github: user.github,
-                isUser: isUser
+                isUser: isUser,
+                avatarArray: avatarArray
             });
         }
 

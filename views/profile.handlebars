@@ -46,7 +46,7 @@
             <div class="feed">
                 <div class="mb-3">
 
-                    {{!-- profile pic modal --}}
+                    {{!-- profile pic - select avatar modal --}}
                     <div class="modal fade" id="new-profilePic-modal" tabindex="-1">
                         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
@@ -59,25 +59,9 @@
                                 </header>
 
                                 <div class="modal-body text-center text-white">
-                                    <img class="ml-3 mb-1 rounded-circle avatarSel"
-                                        src="https://img.icons8.com/ios-filled/100/000000/retro-robot.png"
-                                        alt="profile picture">
-                                    <img class="ml-3 mb-1 rounded-circle avatarSel"
-                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png"
-                                        alt="profile picture">
-                                    <img class="ml-3 mb-1 rounded-circle" id="avatarSel"
-                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png"
-                                        alt="profile picture">
-                                    <img class="ml-3 mb-1 rounded-circle" id="avatarSel"
-                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png"
-                                        alt="profile picture">
-                                    <img class="ml-3 mb-1 rounded-circle" id="avatarSel"
-                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png"
-                                        alt="profile picture">
-                                    <img class="ml-3 mb-1 rounded-circle" id="avatarSel"
-                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png"
-                                        alt="profile picture">
-
+                                    {{#each avatarArray}}
+                                    {{> users/avatar-template}}
+                                    {{/each}}
                                 </div>
                             </div>
                         </div>
@@ -88,16 +72,17 @@
                         {{!-- banner image--}}
                         <img class="w-100 rounded" id="profile-bg"
                             src="https://images.unsplash.com/photo-1572617574118-f5f753cef030?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
-                            alt="...">
+                            alt="{{username}} profile banner">
 
                         {{!-- profile image --}}
                         {{!-- if User is logged in, allow edit --}}
                         {{#if isUser}}
-                        <img class="ml-3 mb-1 rounded-circle profile-img" src="./images/avatars/pack1/{{avatar}}" alt="{{username}} profile picture"
-                            data-toggle="modal" data-target="#new-profilePic-modal">
+                        <img class="ml-3 mb-1 rounded-circle profile-img" src="./images/avatars/pack1/{{avatar}}"
+                            alt="{{username}} profile picture" data-toggle="modal" data-target="#new-profilePic-modal">
                         {{!-- otherwise, simply display profile if viewing other profile --}}
                         {{else}}
-                        <img class="ml-3 mb-1 rounded-circle profile-img" src="./images/avatars/pack1/{{avatar}}" alt="{{username}} profile picture">
+                        <img class="ml-3 mb-1 rounded-circle profile-img" src="./images/avatars/pack1/{{avatar}}"
+                            alt="{{username}} profile picture">
                         {{/if}}
                     </div>
 
@@ -280,6 +265,5 @@
             </div>
             {{/if}}
         </div>
-
     </div>
 </main>

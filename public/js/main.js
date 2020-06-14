@@ -56,13 +56,13 @@ $(document).ready(() => {
 
     // user profile functions ------------------------------------- 
     $(".avatarSel").click(async (event) => {
-        const user = await $.get("/api/userData");
-        const avatar = $(event.target).attr("src");
+        let user = await $.get("/api/userData");
+        let avatar = $(event.target).attr("data-avatar");
         
         await $.ajax({
             method: "PUT",
             url: "/api/users/" + user.username, 
-            data: {avatar: avatar}
+            data: { avatar: avatar }
         })
         // reload the window
         location.reload();
