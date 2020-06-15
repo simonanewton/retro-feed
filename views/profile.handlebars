@@ -46,6 +46,27 @@
             <div class="feed">
                 <div class="mb-3">
 
+                    {{!-- profile banner - select banner modal --}}
+                    <div class="modal fade" id="new-banner-modal" tabindex="-1">
+                        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <header class="modal-header text-white">
+                                    <h4 class="modal-title d-inline">Choose your banner!</h4>
+                                    <button type="button" class="close text-white" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span>&times;</span>
+                                    </button>
+                                </header>
+
+                                <div class="modal-body text-center text-white">
+                                    {{#each bannerArray}}
+                                    {{> users/banner-template}}
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     {{!-- profile pic - select avatar modal --}}
                     <div class="modal fade" id="new-profilePic-modal" tabindex="-1">
                         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
@@ -70,9 +91,14 @@
                     {{!-- profile images --}}
                     <div>
                         {{!-- banner image--}}
-                        <img class="w-100 rounded" id="profile-bg"
-                            src="https://images.unsplash.com/photo-1572617574118-f5f753cef030?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
-                            alt="{{username}} profile banner">
+                       {{#if isUser}}
+                        <img class="w-100 rounded" id="profile-bg" src="./images/banners/{{banner}}"
+                            alt="{{username}} banner picture" data-toggle="modal" data-target="#new-banner-modal">
+                        {{!-- otherwise, simply display profile if viewing other profile --}}
+                        {{else}}
+                        <img class="w-100 rounded" id="profile-bg" src="./images/banners/{{banner}}"
+                            alt="{{username}} banner picture">
+                        {{/if}}
 
                         {{!-- profile image --}}
                         {{!-- if User is logged in, allow edit --}}

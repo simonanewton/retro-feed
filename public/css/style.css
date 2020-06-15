@@ -152,11 +152,11 @@ input[type=email] {
 /* styling for user profile ------------------------------------- */
 
 #profile-bg {
-  max-height: 180px;
+  height: 218px;
 }
 
 .profile-img {
-  margin-top: -100px;
+  margin-top: -75px;
   height: 140px;
   border: 4px white solid;
   background-color: gray;

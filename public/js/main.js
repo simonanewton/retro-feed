@@ -68,6 +68,19 @@ $(document).ready(() => {
         location.reload();
     });
 
+    $(".bannerSel").click(async (event) => {
+        let user = await $.get("/api/userData");
+        let banner = $(event.target).attr("data-banner");
+        
+        await $.ajax({
+            method: "PUT",
+            url: "/api/users/" + user.username, 
+            data: { banner: banner }
+        })
+        // reload the window
+        location.reload();
+    });
+
     $("#profile-update").click(async (event) => {
         event.preventDefault();
 

@@ -167,11 +167,16 @@ module.exports = (app) => {
             let avatarFolder = './public/images/avatars/pack1';
             let avatarArray = fs.readdirSync(avatarFolder);
 
+            // return array of files in banners folder
+            let bannerFolder = './public/images/banners';
+            let bannerArray = fs.readdirSync(bannerFolder);
+
             // render the posts.handlebars page with posts and user info
             res.render("profile", {
                 posts: posts,
                 displayName: user.displayName,
                 username: user.username,
+                banner: user.banner,
                 avatar: user.avatar,
                 email: user.email,
                 bio: user.bio,
@@ -181,7 +186,8 @@ module.exports = (app) => {
                 instagram: user.instagram,
                 github: user.github,
                 isUser: isUser,
-                avatarArray: avatarArray
+                avatarArray: avatarArray,
+                bannerArray: bannerArray
             });
         }
 

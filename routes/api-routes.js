@@ -14,6 +14,12 @@ module.exports = (app) => {
                 avatars = fs.readdirSync(avatarFolder);
                 return avatars[Math.floor(Math.random() * avatars.length)];
             }
+            // create array of files in banners folder and select random file
+            const selectBanner = () => {
+                const bannerFolder = './public/images/banners';
+                banners = fs.readdirSync(bannerFolder);
+                return banners[Math.floor(Math.random() * banners.length)];
+            }
 
             // create an array of all users in the database
             await db.User.create({
@@ -21,7 +27,8 @@ module.exports = (app) => {
                 username: req.body.username,
                 displayName: req.body.displayName,
                 password: req.body.password,
-                avatar: selectAvatar()
+                avatar: selectAvatar(),
+                banner: selectBanner()
             });
 
             // redirect to post /api/login
@@ -155,6 +162,7 @@ module.exports = (app) => {
         try {
             // update user in database with applicable data
             await db.User.update({
+                banner: req.body.banner,
                 avatar: req.body.avatar,
                 bio: req.body.bio,
                 facebook: req.body.facebook,
