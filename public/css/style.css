@@ -151,8 +151,15 @@ input[type=email] {
 
 /* styling for user profile ------------------------------------- */
 
-#profile-bg {
+.banner-container {
   height: 218px;
+  overflow: hidden;
+}
+
+#profile-bg {
+  position: relative;
+  top: -70px;
+  z-index: -1;
 }
 
 .profile-img {

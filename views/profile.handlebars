@@ -91,13 +91,17 @@
                     {{!-- profile images --}}
                     <div>
                         {{!-- banner image--}}
-                       {{#if isUser}}
-                        <img class="w-100 rounded" id="profile-bg" src="./images/banners/{{banner}}"
-                            alt="{{username}} banner picture" data-toggle="modal" data-target="#new-banner-modal">
+                        {{#if isUser}}
+                        <div class="banner-container" data-toggle="modal" data-target="#new-banner-modal">
+                            <img class="w-100 rounded" id="profile-bg" src="./images/banners/{{banner}}"
+                                alt="{{username}} banner picture" >
+                        </div>
                         {{!-- otherwise, simply display profile if viewing other profile --}}
                         {{else}}
-                        <img class="w-100 rounded" id="profile-bg" src="./images/banners/{{banner}}"
-                            alt="{{username}} banner picture">
+                        <div class="w-100 banner-container">
+                            <img class="w-100 rounded" id="profile-bg" src="./images/banners/{{banner}}"
+                                alt="{{username}} banner picture">
+                        </div>
                         {{/if}}
 
                         {{!-- profile image --}}
