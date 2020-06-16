@@ -9,21 +9,14 @@
 
             <div>
                 <h4 class="mb-1 profile-name"><b>{{User.displayName}}</b></h4>
-                <span class="mb-1 d-inline-block">@<a href="/users/{{User.username}}" class="mb-1 link">{{User.username}}</a></span>
+                <span class="mb-1 d-inline-block">@<a href="/users/{{User.username}}"
+                        class="mb-1 link">{{User.username}}</a></span>
                 <p class="m-0">{{createdAt}}</p>
             </div>
         </div>
 
+        {{#if isUser}}
         <div class="d-flex align-items-start">
-            <div class="btn-group dropleft pr-2">
-                <button type="button" class="btn p-0 text-white icon" data-toggle="dropdown">
-                    <i class="fas fa-external-link-alt"></i>
-                </button>
-                <div class="dropdown-menu">
-                    <button class="dropdown-item share-post" type="button" data-id="{{id}}">Share</button>
-                </div>
-            </div>
-
             <div class="btn-group dropleft">
                 <button type="button" class="btn p-0 text-white icon" data-toggle="dropdown">
                     <i class="fas fa-ellipsis-v"></i>
@@ -33,6 +26,7 @@
                 </div>
             </div>
         </div>
+        {{/if}}
     </div>
 
     <hr class="mt-2 mb-3 border-white">

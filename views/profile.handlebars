@@ -92,13 +92,13 @@
                     <div>
                         {{!-- banner image--}}
                         {{#if isUser}}
-                        <div class="banner-container" data-toggle="modal" data-target="#new-banner-modal">
+                        <div class="banner-container rounded" data-toggle="modal" data-target="#new-banner-modal">
                             <img class="w-100 rounded" id="profile-bg" src="./images/banners/{{banner}}"
                                 alt="{{username}} banner picture" >
                         </div>
                         {{!-- otherwise, simply display profile if viewing other profile --}}
                         {{else}}
-                        <div class="w-100 banner-container">
+                        <div class="w-100 banner-container rounded">
                             <img class="w-100 rounded" id="profile-bg" src="./images/banners/{{banner}}"
                                 alt="{{username}} banner picture">
                         </div>
@@ -191,8 +191,10 @@
                         {{#if isUser}}
                         {{!-- if bio exists, display --}}
                         {{#if bio}}
-                        <i class="fas fa-bullhorn d-inline mb-3"></i>
-                        <h6 class="d-inline mb-3">{{bio}}</h6>
+                        <div class="mb-2 d-flex">
+                            <i class="fas fa-bullhorn pr-2"></i>
+                            <h6>{{bio}}</h6>
+                        </div>
                         {{/if}}
                         <button type="button" class="btn btn-outline-info btn-sm mt-2 mb-3" id="profile-button"
                             data-toggle="modal" data-target="#user-profile-modal">Edit profile</button>
@@ -200,8 +202,10 @@
                         {{!-- 2. you're looking at someone else's profile - they have a bio or don't --}}
                         {{else}}
                         {{#if bio}}
-                        <i class="fas fa-bullhorn d-inline mb-3"></i>
-                        <h6 class="d-inline mb-3">{{bio}}</h6>
+                        <div class="mb-2 d-flex">
+                            <i class="fas fa-bullhorn pr-2"></i>
+                            <h6>{{bio}}</h6>
+                        </div>
                         {{/if}}
                         {{/if}}
                     </div>
@@ -234,7 +238,7 @@
                 {{!-- user posts --}}
                 <div>
                     {{#each posts}}
-                    {{> posts/post-template}}
+                    {{> posts/post-template isUser=true}}
                     {{else}}
                     <div class="card mb-3 text-center text-white">
                         <p class="p-4 m-0">No posts...</p>
