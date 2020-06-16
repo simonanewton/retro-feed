@@ -94,7 +94,7 @@
                         {{#if isUser}}
                         <div class="banner-container rounded" data-toggle="modal" data-target="#new-banner-modal">
                             <img class="w-100 rounded" id="profile-bg" src="./images/banners/{{user.banner}}"
-                                alt="{{user.username}} banner picture" >
+                                alt="{{user.username}} banner picture">
                         </div>
                         {{!-- otherwise, simply display profile if viewing other profile --}}
                         {{else}}
@@ -108,7 +108,8 @@
                         {{!-- if User is logged in, allow edit --}}
                         {{#if isUser}}
                         <img class="ml-3 mb-1 rounded-circle profile-img" src="./images/avatars/pack1/{{user.avatar}}"
-                            alt="{{user.username}} profile picture" data-toggle="modal" data-target="#new-profilePic-modal">
+                            alt="{{user.username}} profile picture" data-toggle="modal"
+                            data-target="#new-profilePic-modal">
                         {{!-- otherwise, simply display profile if viewing other profile --}}
                         {{else}}
                         <img class="ml-3 mb-1 rounded-circle profile-img" src="./images/avatars/pack1/{{user.avatar}}"
@@ -237,13 +238,24 @@
 
                 {{!-- user posts --}}
                 <div>
+                    {{#if isUser}}
                     {{#each posts}}
-                    {{> posts/post-template isUser=isUser}}
+                    {{> posts/post-template isUser=true}}
                     {{else}}
                     <div class="card mb-3 text-center text-white">
                         <p class="p-4 m-0">No posts...</p>
                     </div>
                     {{/each}}
+                    
+                    {{else}}
+                    {{#each posts}}
+                    {{> posts/post-template isUser=false}}
+                    {{else}}
+                    <div class="card mb-3 text-center text-white">
+                        <p class="p-4 m-0">No posts...</p>
+                    </div>
+                    {{/each}}
+                    {{/if}}
                 </div>
 
                 {{!-- new post modal --}}

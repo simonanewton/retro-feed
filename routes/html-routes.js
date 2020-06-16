@@ -200,7 +200,7 @@ module.exports = (app) => {
     app.get("/feed/search/:term", authenticate, async (req, res) => {
         try {
             // replace search string separators with spaces
-            const term = (req.params.search).replace(/\+/g, ' ');
+            const term = (req.params.term).replace(/\+/g, ' ');
 
             // create an array of all posts in the database where body includes search
             let posts = await db.Post.findAll({
@@ -232,7 +232,9 @@ module.exports = (app) => {
 
         catch (err) {
             // console.log where the error is coming from
-            console.log("/feed/:search error!");
+            console.log("/feed/search/:term error!");
+
+            console.log(err);
 
             // send status and error to the response
             res.status(401).json(err);

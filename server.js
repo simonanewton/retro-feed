@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/", express.static(__dirname + "/public"));
 app.use("/feed", express.static(__dirname + "/public"));
+app.use("/feed/search", express.static(__dirname + "/public"));
 app.use("/users", express.static(__dirname + "/public"));
 app.use("/posts", express.static(__dirname + "/public"));
 
