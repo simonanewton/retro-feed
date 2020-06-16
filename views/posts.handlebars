@@ -40,7 +40,7 @@
 
             <div class="feed">
                 {{#each posts}}
-                {{> posts/post-template}}
+                {{> posts/post-template isUser=false}}
                 {{else}}
                 <div class="card mb-3 text-center text-white">
                     <p class="p-4 m-0">No one has posted... Try again later or start your own post!</p>
