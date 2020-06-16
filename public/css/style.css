@@ -49,11 +49,12 @@ footer,
 
 .navbar-text {
   font-size: 36px;
+  margin-right: 20px;
 }
 
 .navbar-brand {
   height: 54px;
-  margin-bottom: 20px;
+  margin: 0 6px 6px;
 }
 
 /* styling for forms ------------------------------------- */
