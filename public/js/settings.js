@@ -25,6 +25,9 @@ $(document).ready(() => {
 
             // show success to the user
             $("#success-alert").show();
+
+            // refresh the page
+            window.location.reload();
         }
 
         catch (err) {
@@ -34,23 +37,23 @@ $(document).ready(() => {
     });
 
     const displayError = (err) => {
-		// isolate message from err parameter
-		const error = err.responseJSON.errors[0].message;
-		let message;
-		
-		// determine message from error
-		if (error.indexOf("Validation isEmail") != -1) message = "Invalid email address.";
-		else if (error.indexOf("users.email") != -1) message = "Email already in use.";
-		else if (error.indexOf("users.username") != -1) message = "Username already in use.";
-		else {
-			console.log(error);
-			message = "Settings Update Error."
-		}
+        // isolate message from err parameter
+        const error = err.responseJSON.errors[0].message;
+        let message;
+
+        // determine message from error
+        if (error.indexOf("Validation isEmail") != -1) message = "Invalid email address.";
+        else if (error.indexOf("users.email") != -1) message = "Email already in use.";
+        else if (error.indexOf("users.username") != -1) message = "Username already in use.";
+        else {
+            console.log(error);
+            message = "Settings Update Error."
+        }
 
         // show the error alert with the corresponding error
         $("#error-alert").show();
         $("#error-message").text(message);
-	}
+    }
 
     $("#delete-account").click(async (event) => {
         try {
