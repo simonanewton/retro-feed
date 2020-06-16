@@ -1,0 +1,70 @@
+<main>
+    <div class="container mt-4 d-flex">
+
+        {{!-- left sidebar --}}
+        <div class="col-3">
+            <div class="p-3 mb-3 rounded d-flex align-items-center sidebar active">
+                <i class="fas fa-home"></i>
+                <span class="m-0 px-3">|</span>
+                <a href="/" class="link active">Home</a>
+            </div>
+
+            <div class="p-3 mb-3 text-white rounded d-flex align-items-center sidebar">
+                <i class="fas fa-user"></i>
+                <span class="m-0 px-3">|</span>
+                <a href="/users/{{username}}" class="link">Profile</a>
+            </div>
+
+            <div class="p-3 mb-3 text-white rounded d-flex align-items-center sidebar">
+                <i class="fas fa-cog"></i>
+                <span class="m-0 px-3">|</span>
+                <a href="/settings" class="link">Settings</a>
+            </div>
+
+            <div class="p-3 mb-3 text-white rounded d-flex align-items-center sidebar">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="m-0 px-3">|</span>
+                <a href="/logout" class="link">Logout</a>
+            </div>
+        </div>
+
+        {{!-- main feed --}}
+        <div class="col-6 feed-div">
+            <div class="mb-3">
+                <form class="border-0 rounded d-flex" id="search-bar">
+                    <input type="text" placeholder="Search" autocomplete="off" spellcheck="false"
+                        class="px-3 py-2 w-100 text-white border-0" id="search-input">
+                    <button type="submit" class="btn text-white border-0" id="search-button">
+                        <i class="fas fa-search px-2 py-1" id="search-icon"></i>
+                    </button>
+                </form>
+            </div>
+
+            <div class="feed">
+                {{#each users}}
+                {{> users/user-template}}
+                {{else}}
+                <div class="card mb-3 text-center text-white">
+                    <p class="p-4 m-0">No users...</p>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        {{!-- right sidebar --}}
+        <div class="col-3">
+            <div class="p-3 mb-3 text-white rounded d-flex align-items-center justify-content-end sidebar">
+                <a href="/users" class="link">All Users</a>
+                <span class="m-0 px-3">|</span>
+                <i class="fas fa-users"></i>
+            </div>
+
+            <div class="p-3 mb-3 text-white rounded d-flex align-items-center justify-content-end sidebar">
+                <a href="/posts" class="link">All Posts</a>
+                <span class="m-0 px-3">|</span>
+                <i class="fas fa-address-card"></i>
+            </div>
+        </div>
+
+    </div>
+</main>

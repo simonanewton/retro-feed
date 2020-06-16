@@ -25,6 +25,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             is: /^[0-9a-f]{64}$/i
         },
+        banner: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
         avatar: {
             type: DataTypes.STRING,
             allowNull: true

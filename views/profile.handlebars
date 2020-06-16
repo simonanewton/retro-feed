@@ -6,7 +6,7 @@
             <div class="p-3 mb-3 text-white rounded d-flex align-items-center sidebar">
                 <i class="fas fa-home"></i>
                 <span class="m-0 px-3">|</span>
-                <a href="/posts" class="link">Home</a>
+                <a href="/" class="link">Home</a>
             </div>
 
             <div class="p-3 mb-3 active rounded d-flex align-items-center sidebar">
@@ -46,7 +46,28 @@
             <div class="feed">
                 <div class="mb-3">
 
-                    {{!-- profile pic modal --}}
+                    {{!-- profile banner - select banner modal --}}
+                    <div class="modal fade" id="new-banner-modal" tabindex="-1">
+                        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <header class="modal-header text-white">
+                                    <h4 class="modal-title d-inline">Choose your banner!</h4>
+                                    <button type="button" class="close text-white" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span>&times;</span>
+                                    </button>
+                                </header>
+
+                                <div class="modal-body text-center text-white">
+                                    {{#each bannerArray}}
+                                    {{> users/banner-template}}
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{!-- profile pic - select avatar modal --}}
                     <div class="modal fade" id="new-profilePic-modal" tabindex="-1">
                         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
@@ -59,25 +80,9 @@
                                 </header>
 
                                 <div class="modal-body text-center text-white">
-                                    <img class="ml-3 mb-1 rounded-circle avatarSel"
-                                        src="https://img.icons8.com/ios-filled/100/000000/retro-robot.png"
-                                        alt="profile picture">
-                                    <img class="ml-3 mb-1 rounded-circle avatarSel"
-                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png"
-                                        alt="profile picture">
-                                    <img class="ml-3 mb-1 rounded-circle" id="avatarSel"
-                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png"
-                                        alt="profile picture">
-                                    <img class="ml-3 mb-1 rounded-circle" id="avatarSel"
-                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png"
-                                        alt="profile picture">
-                                    <img class="ml-3 mb-1 rounded-circle" id="avatarSel"
-                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png"
-                                        alt="profile picture">
-                                    <img class="ml-3 mb-1 rounded-circle" id="avatarSel"
-                                        src="https://img.icons8.com/plasticine/2x/cute-pumpkin.png"
-                                        alt="profile picture">
-
+                                    {{#each avatarArray}}
+                                    {{> users/avatar-template}}
+                                    {{/each}}
                                 </div>
                             </div>
                         </div>
@@ -85,11 +90,30 @@
 
                     {{!-- profile images --}}
                     <div>
-                        <img class="w-100 rounded" id="profile-bg"
-                            src="https://images.unsplash.com/photo-1572617574118-f5f753cef030?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"
-                            alt="...">
-                        <img class="ml-3 mb-1 rounded-circle" id="profile-img" src="{{avatar}}" alt="profile picture"
-                            data-toggle="modal" data-target="#new-profilePic-modal">
+                        {{!-- banner image--}}
+                        {{#if isUser}}
+                        <div class="banner-container" data-toggle="modal" data-target="#new-banner-modal">
+                            <img class="w-100 rounded" id="profile-bg" src="./images/banners/{{banner}}"
+                                alt="{{username}} banner picture" >
+                        </div>
+                        {{!-- otherwise, simply display profile if viewing other profile --}}
+                        {{else}}
+                        <div class="w-100 banner-container">
+                            <img class="w-100 rounded" id="profile-bg" src="./images/banners/{{banner}}"
+                                alt="{{username}} banner picture">
+                        </div>
+                        {{/if}}
+
+                        {{!-- profile image --}}
+                        {{!-- if User is logged in, allow edit --}}
+                        {{#if isUser}}
+                        <img class="ml-3 mb-1 rounded-circle profile-img" src="./images/avatars/pack1/{{avatar}}"
+                            alt="{{username}} profile picture" data-toggle="modal" data-target="#new-profilePic-modal">
+                        {{!-- otherwise, simply display profile if viewing other profile --}}
+                        {{else}}
+                        <img class="ml-3 mb-1 rounded-circle profile-img" src="./images/avatars/pack1/{{avatar}}"
+                            alt="{{username}} profile picture">
+                        {{/if}}
                     </div>
 
                     {{!-- edit profile modal --}}
@@ -97,7 +121,7 @@
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <header class="modal-header text-white">
-                                    <h4 class="modal-title d-inline">Edit Bio</h4>
+                                    <h4 class="modal-title d-inline">Edit profile</h4>
                                     <i class="fas fa-user px-3 d-inline align-self-center"></i>
                                     <button type="button" class="close text-white" data-dismiss="modal"
                                         aria-label="Close">
@@ -109,40 +133,40 @@
                                     <form class="mb-3 bio-update" id="bio-update-form">
                                         <div class="form-group">
                                             <label for="bio-input">Bio</label>
-                                            <textarea type="text" rows="4" class="border-0 form-control"
-                                                id="bio-input" placeholder="Add your bio">{{bio}}</textarea>
+                                            <textarea type="text" rows="4" class="border-0 form-control" id="bio-input"
+                                                placeholder="Add your bio">{{bio}}</textarea>
                                         </div>
 
                                         <hr class="border-light mt-4">
 
                                         <div class="form-group">
                                             <label for="bio-input">Facebook</label>
-                                            <input type="text" class="border-0 form-control" id="facebook-input" placeholder="Add your Facebook profile"
-                                                value="{{facebook}}"></input>
+                                            <input type="text" class="border-0 form-control" id="facebook-input"
+                                                placeholder="Add your Facebook profile" value="{{facebook}}"></input>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="twitter-input">Twitter</label>
-                                            <input type="text" class="border-0 form-control" id="twitter-input" placeholder="Add your Twitter profile"
-                                                value="{{twitter}}"></input>
+                                            <input type="text" class="border-0 form-control" id="twitter-input"
+                                                placeholder="Add your Twitter profile" value="{{twitter}}"></input>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="linkedin-input">LinkedIn</label>
-                                            <input type="text" class="border-0 form-control" id="linkedin-input" placeholder="Add your LinkedIn profile"
-                                                value="{{linkedin}}"></input>
+                                            <input type="text" class="border-0 form-control" id="linkedin-input"
+                                                placeholder="Add your LinkedIn profile" value="{{linkedin}}"></input>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="instagram-input">Instagram</label>
-                                            <input type="text" class="border-0 form-control" id="instagram-input" placeholder="Add your Instagram"
-                                                value="{{instagram}}"></input>
+                                            <input type="text" class="border-0 form-control" id="instagram-input"
+                                                placeholder="Add your Instagram" value="{{instagram}}"></input>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="github-input">GitHub</label>
-                                            <input type="text" class="border-0 form-control" id="github-input" placeholder="Add your GitHub"
-                                                value="{{github}}"></input>
+                                            <input type="text" class="border-0 form-control" id="github-input"
+                                                placeholder="Add your GitHub" value="{{github}}"></input>
                                         </div>
 
                                     </form>
@@ -157,7 +181,7 @@
                     </div>
 
                     {{!-- user bio --}}
-                    <div class="card mb-3 p-3 profile-bio">
+                    <div class="card mt-2 mb-3 p-3 profile-bio">
                         <h4 class="profile-name"><b>{{displayName}}</b></h4>
                         <h5 class="profile-username">@{{username}}</h5>
                         <hr class="border-light">
@@ -168,16 +192,16 @@
                         {{!-- if bio exists, display --}}
                         {{#if bio}}
                         <i class="fas fa-bullhorn d-inline mb-3"></i>
-                        <h6 class="d-inline my-3">{{bio}}</h6>
+                        <h6 class="d-inline mb-3">{{bio}}</h6>
                         {{/if}}
-                        <button type="button" class="btn btn-outline-info btn-sm mt-3 mb-2" id="profile-button"
+                        <button type="button" class="btn btn-outline-info btn-sm mt-2 mb-3" id="profile-button"
                             data-toggle="modal" data-target="#user-profile-modal">Edit profile</button>
 
                         {{!-- 2. you're looking at someone else's profile - they have a bio or don't --}}
                         {{else}}
                         {{#if bio}}
                         <i class="fas fa-bullhorn d-inline mb-3"></i>
-                        <h6 class="d-inline my-3">{{bio}}</h6>
+                        <h6 class="d-inline mb-3">{{bio}}</h6>
                         {{/if}}
                         {{/if}}
                     </div>
@@ -210,7 +234,7 @@
                 {{!-- user posts --}}
                 <div>
                     {{#each posts}}
-                    {{> posts/new-post}}
+                    {{> posts/post-template}}
                     {{else}}
                     <div class="card mb-3 text-center text-white">
                         <p class="p-4 m-0">No posts...</p>
@@ -251,13 +275,13 @@
         {{!-- Right Sidebar --}}
         <div class="col-3">
             <div class="p-3 mb-3 text-white rounded d-flex align-items-center justify-content-end sidebar">
-                <a href="" class="link">All Users</a>
+                <a href="/users" class="link">All Users</a>
                 <span class="m-0 px-3">|</span>
                 <i class="fas fa-users"></i>
             </div>
 
             <div class="p-3 mb-3 text-white rounded d-flex align-items-center justify-content-end sidebar">
-                <a href="/all-post" class="link">All Posts</a>
+                <a href="/posts" class="link">All Posts</a>
                 <span class="m-0 px-3">|</span>
                 <i class="fas fa-address-card"></i>
             </div>
@@ -271,6 +295,5 @@
             </div>
             {{/if}}
         </div>
-
     </div>
 </main>

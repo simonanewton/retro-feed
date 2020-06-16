@@ -12,6 +12,9 @@ $(document).ready(() => {
         if ($("#current-displayName").val()) settings.displayName = $("#current-displayName").val();
         if ($("#current-password").val()) settings.password = $("#current-pssword").val();
 
+        // if all of the fields have been left blank, exit function
+        if (!Object.keys(settings).length) return;
+
         try {
             // send an update request to the api
             await $.ajax({
@@ -22,6 +25,9 @@ $(document).ready(() => {
 
             // show success to the user
             $("#success-alert").show();
+
+            // refresh the page
+            window.location.reload();
         }
 
         catch (err) {
@@ -31,20 +37,30 @@ $(document).ready(() => {
     });
 
     const displayError = (err) => {
-        console.log(err);
+        // isolate message from err parameter
+        const error = err.responseJSON.errors[0].message;
+        let message;
+
+        // determine message from error
+        if (error.indexOf("Validation isEmail") != -1) message = "Invalid email address.";
+        else if (error.indexOf("users.email") != -1) message = "Email already in use.";
+        else if (error.indexOf("users.username") != -1) message = "Username already in use.";
+        else {
+            console.log(error);
+            message = "Settings Update Error."
+        }
 
         // show the error alert with the corresponding error
         $("#error-alert").show();
-        $("#error-message").text("Username already exists.");
+        $("#error-message").text(message);
     }
 
     $("#delete-account").click(async (event) => {
         try {
             // send delete request to the settings api
             await $.ajax({
-                method: "PUT",
+                method: "DELETE",
                 url: "/api/settings",
-                data: settings
             });
 
             // send the user to the login page

@@ -13,7 +13,7 @@ $(document).ready(() => {
         search = search.replace(/ /g, "+");
 
         // redirect user to page with search input results
-        window.location.assign("/posts/" + search);
+        window.location.assign("/feed/search/" + search);
     });
 
     $("#submit-post").click(async (event) => {
@@ -56,13 +56,26 @@ $(document).ready(() => {
 
     // user profile functions ------------------------------------- 
     $(".avatarSel").click(async (event) => {
-        const user = await $.get("/api/userData");
-        const avatar = $(event.target).attr("src");
+        let user = await $.get("/api/userData");
+        let avatar = $(event.target).attr("data-avatar");
         
         await $.ajax({
             method: "PUT",
             url: "/api/users/" + user.username, 
-            data: {avatar: avatar}
+            data: { avatar: avatar }
+        })
+        // reload the window
+        location.reload();
+    });
+
+    $(".bannerSel").click(async (event) => {
+        let user = await $.get("/api/userData");
+        let banner = $(event.target).attr("data-banner");
+        
+        await $.ajax({
+            method: "PUT",
+            url: "/api/users/" + user.username, 
+            data: { banner: banner }
         })
         // reload the window
         location.reload();

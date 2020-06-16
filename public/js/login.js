@@ -25,7 +25,7 @@ $(document).ready(() => {
 			await $.post("/api/login", userData);
 
 			// send the user to the posts page
-			window.location.replace("/posts");
+			window.location.replace("/feed");
 		}
 
 		catch (err) {
