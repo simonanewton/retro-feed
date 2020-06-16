@@ -162,7 +162,7 @@ module.exports = (app) => {
 
             // get the data for the specific user
             let user = await db.User.findOne({ where: { username: username } });
-            
+
             // return array of files in avatar folder 
             let avatarFolder = './public/images/avatars/pack1';
             let avatarArray = fs.readdirSync(avatarFolder);
@@ -173,18 +173,9 @@ module.exports = (app) => {
 
             // render the posts.handlebars page with posts and user info
             res.render("profile", {
+                username: req.user.username,
                 posts: posts,
-                displayName: user.displayName,
-                username: user.username,
-                banner: user.banner,
-                avatar: user.avatar,
-                email: user.email,
-                bio: user.bio,
-                facebook: user.facebook,
-                twitter: user.twitter,
-                linkedin: user.linkedin,
-                instagram: user.instagram,
-                github: user.github,
+                user: user.dataValues,
                 isUser: isUser,
                 avatarArray: avatarArray,
                 bannerArray: bannerArray
@@ -204,7 +195,7 @@ module.exports = (app) => {
     app.get("/feed/search/:term", authenticate, async (req, res) => {
         try {
             // replace search string separators with spaces
-            const term = (req.params.search).replace(/\+/g, ' ');
+            const term = (req.params.term).replace(/\+/g, ' ');
 
             // create an array of all posts in the database where body includes search
             let posts = await db.Post.findAll({
@@ -236,7 +227,9 @@ module.exports = (app) => {
 
         catch (err) {
             // console.log where the error is coming from
-            console.log("/feed/:search error!");
+            console.log("/feed/search/:term error!");
+
+            console.log(err);
 
             // send status and error to the response
             res.status(401).json(err);

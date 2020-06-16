@@ -226,6 +226,9 @@ module.exports = (app) => {
                 }
             });
 
+            // logout the user to update req.user
+            req.logout();
+
             // sends success response
             res.status(200).send("User information updated.");
         }
