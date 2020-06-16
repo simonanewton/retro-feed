@@ -2,3 +2,4 @@ node_modules
 package-lock.json
 .env
 .DS_Store
+public/images/avatars/pack1/.DS_Store
