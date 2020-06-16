@@ -1,8 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     let Post = sequelize.define("Post", {
-        // username: DataTypes.STRING,
-        // displayName: DataTypes.STRING,
-        body: DataTypes.STRING
+        body: DataTypes.STRING(2000)
     });
 
     // add a belongsTo association to Posts

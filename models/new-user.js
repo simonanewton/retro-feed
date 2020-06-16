@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
         },
         bio: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(1000),
             allowNull: true,
             unique: false
         },
