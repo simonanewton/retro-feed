@@ -167,6 +167,8 @@ module.exports = (app) => {
 
             // get the data for the specific user
             let user = await db.User.findOne({ where: { username: username } });
+
+            // user = user.map(data => data.dataValues);
             
             // return array of files in avatar folder 
             let avatarFolder = './public/images/avatars/pack1';

@@ -27,7 +27,7 @@ $(document).ready(() => {
             $("#success-alert").show();
 
             // refresh the page
-            window.location.reload();
+            window.location.replace("/settings");
         }
 
         catch (err) {
