@@ -168,8 +168,6 @@ module.exports = (app) => {
             // get the data for the specific user
             let user = await db.User.findOne({ where: { username: username } });
 
-            // user = user.map(data => data.dataValues);
-            
             // return array of files in avatar folder 
             let avatarFolder = './public/images/avatars/pack1';
             let avatarArray = fs.readdirSync(avatarFolder);
@@ -180,18 +178,9 @@ module.exports = (app) => {
 
             // render the posts.handlebars page with posts and user info
             res.render("profile", {
+                username: req.user.username,
                 posts: posts,
-                displayName: user.displayName,
-                username: user.username,
-                banner: user.banner,
-                avatar: user.avatar,
-                email: user.email,
-                bio: user.bio,
-                facebook: user.facebook,
-                twitter: user.twitter,
-                linkedin: user.linkedin,
-                instagram: user.instagram,
-                github: user.github,
+                user: user.dataValues,
                 isUser: isUser,
                 avatarArray: avatarArray,
                 bannerArray: bannerArray
