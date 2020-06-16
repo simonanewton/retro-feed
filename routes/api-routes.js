@@ -158,6 +158,22 @@ module.exports = (app) => {
         }
     });
 
+    app.post("/api/follow/:id", async (req, res) => {
+        try {
+            const userId = req.params.id;
+            const follow = await db.following.create({
+                followId: userId
+            });
+
+            res.status(200).send("User successfully followed.")
+        }
+
+        catch (err) {
+            console.log(err);
+            res.status(401).json(err)
+        }
+    });
+
     app.put("/api/users/:username", async (req, res) => {
         try {
             // update user in database with applicable data

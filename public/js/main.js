@@ -58,10 +58,10 @@ $(document).ready(() => {
     $(".avatarSel").click(async (event) => {
         let user = await $.get("/api/userData");
         let avatar = $(event.target).attr("data-avatar");
-        
+
         await $.ajax({
             method: "PUT",
-            url: "/api/users/" + user.username, 
+            url: "/api/users/" + user.username,
             data: { avatar: avatar }
         })
         // reload the window
@@ -71,10 +71,10 @@ $(document).ready(() => {
     $(".bannerSel").click(async (event) => {
         let user = await $.get("/api/userData");
         let banner = $(event.target).attr("data-banner");
-        
+
         await $.ajax({
             method: "PUT",
-            url: "/api/users/" + user.username, 
+            url: "/api/users/" + user.username,
             data: { banner: banner }
         })
         // reload the window
@@ -90,8 +90,8 @@ $(document).ready(() => {
         // send PUT update request with bio as object
         await $.ajax({
             method: "PUT",
-            url: "/api/users/" + user.username, 
-            data: { 
+            url: "/api/users/" + user.username,
+            data: {
                 bio: $("#bio-input").val().trim(),
                 facebook: $("#facebook-input").val().trim(),
                 twitter: $("#twitter-input").val().trim(),
@@ -107,4 +107,13 @@ $(document).ready(() => {
         location.reload();
     });
 
+    $(".follow-user").click(async (event) => {
+        const userId = $(event.target).parent().data("id");
+        await $.ajax({
+            method: "POST",
+            url: "/api/follow/" + userId
+        });
+
+        // window.location.reload();
+    });
 });
