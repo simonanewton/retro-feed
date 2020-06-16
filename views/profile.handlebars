@@ -93,26 +93,26 @@
                         {{!-- banner image--}}
                         {{#if isUser}}
                         <div class="banner-container rounded" data-toggle="modal" data-target="#new-banner-modal">
-                            <img class="w-100 rounded" id="profile-bg" src="./images/banners/{{banner}}"
-                                alt="{{username}} banner picture" >
+                            <img class="w-100 rounded" id="profile-bg" src="./images/banners/{{user.banner}}"
+                                alt="{{user.username}} banner picture" >
                         </div>
                         {{!-- otherwise, simply display profile if viewing other profile --}}
                         {{else}}
                         <div class="w-100 banner-container rounded">
-                            <img class="w-100 rounded" id="profile-bg" src="./images/banners/{{banner}}"
-                                alt="{{username}} banner picture">
+                            <img class="w-100 rounded" id="profile-bg" src="./images/banners/{{user.banner}}"
+                                alt="{{user.username}} banner picture">
                         </div>
                         {{/if}}
 
                         {{!-- profile image --}}
                         {{!-- if User is logged in, allow edit --}}
                         {{#if isUser}}
-                        <img class="ml-3 mb-1 rounded-circle profile-img" src="./images/avatars/pack1/{{avatar}}"
-                            alt="{{username}} profile picture" data-toggle="modal" data-target="#new-profilePic-modal">
+                        <img class="ml-3 mb-1 rounded-circle profile-img" src="./images/avatars/pack1/{{user.avatar}}"
+                            alt="{{user.username}} profile picture" data-toggle="modal" data-target="#new-profilePic-modal">
                         {{!-- otherwise, simply display profile if viewing other profile --}}
                         {{else}}
-                        <img class="ml-3 mb-1 rounded-circle profile-img" src="./images/avatars/pack1/{{avatar}}"
-                            alt="{{username}} profile picture">
+                        <img class="ml-3 mb-1 rounded-circle profile-img" src="./images/avatars/pack1/{{user.avatar}}"
+                            alt="{{user.username}} profile picture">
                         {{/if}}
                     </div>
 
@@ -182,18 +182,18 @@
 
                     {{!-- user bio --}}
                     <div class="card mt-2 mb-3 p-3 profile-bio">
-                        <h4 class="profile-name"><b>{{displayName}}</b></h4>
-                        <h5 class="profile-username">@{{username}}</h5>
+                        <h4 class="profile-name"><b>{{user.displayName}}</b></h4>
+                        <h5 class="profile-username">@{{user.username}}</h5>
                         <hr class="border-light">
 
                         {{!-- options: --}}
                         {{!-- 1. you're looking at your own profile - you have a bio or you don't --}}
                         {{#if isUser}}
                         {{!-- if bio exists, display --}}
-                        {{#if bio}}
+                        {{#if user.bio}}
                         <div class="mb-2 d-flex">
                             <i class="fas fa-bullhorn pr-2"></i>
-                            <h6>{{bio}}</h6>
+                            <h6>{{user.bio}}</h6>
                         </div>
                         {{/if}}
                         <button type="button" class="btn btn-outline-info btn-sm mt-2 mb-3" id="profile-button"
@@ -201,10 +201,10 @@
 
                         {{!-- 2. you're looking at someone else's profile - they have a bio or don't --}}
                         {{else}}
-                        {{#if bio}}
+                        {{#if user.bio}}
                         <div class="mb-2 d-flex">
                             <i class="fas fa-bullhorn pr-2"></i>
-                            <h6>{{bio}}</h6>
+                            <h6>{{user.bio}}</h6>
                         </div>
                         {{/if}}
                         {{/if}}
@@ -212,24 +212,24 @@
 
                     {{!-- social links --}}
                     <div class="m-4">
-                        {{#if facebook}}
-                        <a href="{{facebook}}" target="_blank" class="fb-ic mr-3"><i
+                        {{#if user.facebook}}
+                        <a href="{{user.facebook}}" target="_blank" class="fb-ic mr-3"><i
                                 class="fab fa-lg fa-facebook-f profile-social"></i></a>
                         {{/if}}
-                        {{#if twitter}}
-                        <a href="{{twitter}}" target="_blank" class="tw-ic mr-3"><i
+                        {{#if user.twitter}}
+                        <a href="{{user.twitter}}" target="_blank" class="tw-ic mr-3"><i
                                 class="fab fa-lg fa-twitter profile-social"></i></a>
                         {{/if}}
-                        {{#if linkedin}}
-                        <a href="{{linkedin}}" target="_blank" class="li-ic mr-3"><i
+                        {{#if user.linkedin}}
+                        <a href="{{user.linkedin}}" target="_blank" class="li-ic mr-3"><i
                                 class="fab fa-lg fa-linkedin-in profile-social"></i></a>
                         {{/if}}
                         {{#if instagram}}
-                        <a href="{{instagram}}" target="_blank" class="ins-ic mr-3"><i
+                        <a href="{{user.instagram}}" target="_blank" class="ins-ic mr-3"><i
                                 class="fab fa-lg fa-instagram profile-social"></i></a>
                         {{/if}}
-                        {{#if github}}
-                        <a href="{{github}}" target="_blank" class="git-ic mr-3"><i
+                        {{#if user.github}}
+                        <a href="{{user.github}}" target="_blank" class="git-ic mr-3"><i
                                 class="fab fa-lg fa-github profile-social"></i></a>
                         {{/if}}
                     </div>
@@ -238,7 +238,7 @@
                 {{!-- user posts --}}
                 <div>
                     {{#each posts}}
-                    {{> posts/post-template isUser=true}}
+                    {{> posts/post-template isUser=isUser}}
                     {{else}}
                     <div class="card mb-3 text-center text-white">
                         <p class="p-4 m-0">No posts...</p>
