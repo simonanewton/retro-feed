@@ -1,8 +1,14 @@
-# Project 2
+# RetroFeed
 
 ## Description
 
-TBD
+RetroFeed is a social media platform reimagined if social media existed in the 80s. It gives a retro feel to a technology now ingrained in our society. RetroFeed is built using the following technologies:
+
+* Express
+* Handlebars.js
+* Passport.js
+* Sequelize (MySQL)
+* NodeJS
 
 ## Table of Contents
 
@@ -13,22 +19,13 @@ TBD
 
 ## Installation
 
-To install the required npm packages to run this application, run the following command:
-```sh
-npm install
-```
+To run this program locally, `git clone` the repo. To install the required npm packages to run this application, run `npm install`.
 
-Then, to create a local instance of the required database on your machine, run the following command:
-```sh
-npm run seed
-```
+Then, to create a local instance of the required database on your machine, run `npm run seed` which will run a local MySQL database which is the dialect used by Sequelize.
 
 ## Usage
 
-To use this application, run the following command:
-```sh
-npm start
-```
+You can run the application server by running `npm start` or use Nodemon for development by running `npm run watch`.
 
 ## Credits
 

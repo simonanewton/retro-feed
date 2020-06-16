@@ -59,11 +59,9 @@ module.exports = (app) => {
 
             // modify the createdAt variable with moment to show how long ago the post was created
             posts.map(post => post.createdAt = moment(post.createdAt, 'YYYY-MM-DDTHH:mm:ss.000Z').fromNow());
-            console.log("Posts array from db: ", posts);
 
             // reverse the array to show the most recent posts first
             posts.reverse();
-            console.log("Posts array after .reverse(): ", posts);
 
             // render the posts.handlebars page with the posts and username
             res.render("feed", { posts: posts, username: req.user.username });
